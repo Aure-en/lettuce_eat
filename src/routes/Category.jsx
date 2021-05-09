@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Post() {
+function Category() {
   return (
     <div>
-      post
+      Category
     </div>
   )
 }
 
-export default Post
+export default Category;

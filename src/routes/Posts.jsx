@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Post() {
+function All() {
   return (
     <div>
-      post
+      All
     </div>
   )
 }
 
-export default Post
+export default All

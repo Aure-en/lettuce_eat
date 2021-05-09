@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Posts from "./routes/Posts";
+import Categories from "./routes/Categories";
+import Category from "./routes/Category";
+import Main from "./routes/Main";
+import NotFound from "./routes/NotFound";
+import Post from "./routes/Post";
+import "normalize.css";
 
 function App() {
-  useEffect(async () => {
-    console.log(process.env.REACT_APP_API_URL);
-    // Works if we get a proper response in JSON.
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/609539bc37b79025a254edae/`);
-    const text = await response.text();
-    try {
-      const data = JSON.parse(text);
-      console.log(data);
-    } catch {
-      // If we get an error
-      console.log(text);
-    }
-  }, []);
-
   return (
-    <div className="App" />
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Main} />
+        <Route exact path="/categories" component={Categories} />
+        <Route path="/categories/:category" component={Category} />
+        <Route exact path="/posts" component={Posts} />
+        <Route path="/posts/:postId" component={Post} />
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
   );
 }
 
