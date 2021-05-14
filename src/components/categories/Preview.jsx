@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
 // Fetch the latest posts from a specific category and displays them
@@ -13,8 +14,10 @@ function Preview({ category, limit }) {
       {data &&
         data.map((post) => (
           <li key={post._id}>
-            {post.title}
-            {post.content}
+            <Link to={`/posts/${post._id}`}>
+              {post.title}
+              {post.content}
+            </Link>
           </li>
         ))}
     </ul>
