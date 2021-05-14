@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import redraft from "redraft";
+import renderers from "../shared/renderers";
 import Form from "./Form";
 
 function Comment({ comment }) {
@@ -8,7 +10,7 @@ function Comment({ comment }) {
   return (
     <div>
       <div>{comment.username}</div>
-      <div>{comment.content}</div>
+      <div>{redraft(JSON.parse(comment.content), renderers)}</div>
       <button type="button" onClick={() => setIsReplying(true)}>
         Reply
       </button>
