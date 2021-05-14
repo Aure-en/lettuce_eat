@@ -1,11 +1,24 @@
-import React from 'react'
+import React from "react";
+import Preview from "../components/categories/Preview";
+import useFetch from "../hooks/useFetch";
 
-function Category() {
-  return (
-    <div>
-      Category
-    </div>
-  )
+function Category({ match }) {
+  const { data, error } = useFetch(`${process.env.REACT_APP_API_URL}/categories/${match.params.category}`)
+
+  if (error) {
+    return <div>Category not found.</div>;
+  }
+
+  if (data) {
+    return (
+      <>
+        <div>{data.name}</div>
+        <Preview category={data} limit={10} />
+      </>
+    );
+  }
+
+  return <></>;
 }
 
 export default Category;
