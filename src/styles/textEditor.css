@@ -1,0 +1,46 @@
+/* Quote Block */
+.quoteBlock {
+  position: relative;
+  margin: 1rem 0 1rem 1rem;
+}
+
+.quoteBlock:before {
+  position: absolute;
+  content: '';
+  border: 2px solid rgb(237, 212, 194);
+  border-radius: 15%;
+  left: -.75rem;
+  height: 100%;
+}
+
+/* Code Block */
+.codeBlock {
+  background: rgb(241, 236, 230, .3);
+  padding: .5rem;
+  margin: 1rem;
+  font-family: "Monospace";
+}
+
+/* Heading Block */
+.heading {
+  font-size: 1.25rem;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.code {
+  font-family: "Monospace";
+}
+
+.block {
+  line-height: 1.5rem;
+  margin: .5rem 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: .875rem;
+}
+
+.Editor-hidePlaceholder .public-DraftEditorPlaceholder-root {
+  display: none;
+}

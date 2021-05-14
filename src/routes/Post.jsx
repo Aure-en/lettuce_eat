@@ -1,5 +1,8 @@
 import React from "react";
 import useFetch from "../hooks/useFetch";
+import PostComponent from "../components/post/Post";
+import Form from "../components/comments/Form";
+import Comments from "../components/comments/Comments";
 
 function Post({ match }) {
   const { data: post, error } = useFetch(
@@ -13,8 +16,9 @@ function Post({ match }) {
   if (post) {
     return (
       <>
-        <div>{post.title}</div>
-        <div>{post.text}</div>
+        <PostComponent post={post} />
+        <Form postId={post._id} />
+        <Comments postId={post._id} />
       </>
     );
   }
