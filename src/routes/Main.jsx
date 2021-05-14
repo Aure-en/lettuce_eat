@@ -1,11 +1,8 @@
-import React from 'react'
+import React from "react";
+import Latest from "../components/main/Latest";
 
 function Main() {
-  return (
-    <div>
-      main
-    </div>
-  )
+  return <Latest />;
 }
 
-export default Main
+export default Main;

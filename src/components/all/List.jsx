@@ -3,9 +3,7 @@ import styled from "styled-components";
 import useFetch from "../../hooks/useFetch";
 
 function Latest() {
-  const { data, error } = useFetch(
-    `${process.env.REACT_APP_API_URL}/posts?page=1&limit=10`
-  );
+  const { data, error } = useFetch(`${process.env.REACT_APP_API_URL}/posts`);
 
   if (error) {
     return <div>{error}</div>;
