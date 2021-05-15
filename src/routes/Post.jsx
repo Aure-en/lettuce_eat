@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import useFetch from "../hooks/useFetch";
 import PostComponent from "../components/post/Post";
 import Form from "../components/comments/Form";
@@ -27,3 +28,11 @@ function Post({ match }) {
 }
 
 export default Post;
+
+Post.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      postId: PropTypes.string,
+    }),
+  }).isRequired,
+};

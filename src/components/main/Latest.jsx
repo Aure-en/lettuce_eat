@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import useFetch from "../../hooks/useFetch";
+import Preview from "../post/Preview";
 
 function Latest() {
   const { data, error } = useFetch(
@@ -12,16 +13,7 @@ function Latest() {
   }
 
   if (data) {
-    return (
-      <ul>
-        {data.map((post) => (
-          <li key={post._id}>
-            <div>{post.title}</div>
-            <div>{post.text}</div>
-          </li>
-        ))}
-      </ul>
-    );
+    return <Preview posts={data} />;
   }
 
   return <></>;

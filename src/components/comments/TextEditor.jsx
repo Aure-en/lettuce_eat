@@ -18,7 +18,6 @@ import {
   ContentState,
   Modifier,
 } from "draft-js";
-import uniqid from "uniqid";
 import styled from "styled-components";
 import "draft-js/dist/Draft.css";
 import "../../styles/textEditor.css";
