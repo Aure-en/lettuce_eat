@@ -10,6 +10,7 @@ import Main from "./routes/Main";
 import NotFound from "./routes/NotFound";
 import Post from "./routes/Post";
 import theme from "./styles/theme";
+import "./styles/textEditor.css";
 import "normalize.css";
 
 function App() {

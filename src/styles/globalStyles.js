@@ -19,6 +19,19 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
 
+  input,
+  textarea {
+    line-height: 1.25rem;
+    font-weight: 300;
+    font-size: 0.875rem;
+  }
+
+  input:focus,
+  textarea:focus,
+  button:focus {
+    outline: 1px solid transparent;
+  }
+
 `;
 
 export default GlobalStyles;

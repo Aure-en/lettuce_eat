@@ -12,12 +12,14 @@ function Post({ post }) {
         <div>{post.description}</div>
       </Header>
 
-      <Image
-        src={`data:${post.images[0].contentType};base64,${Buffer.from(
-          post.images[0].data
-        ).toString("base64")}`}
-        alt={post.title}
-      />
+      {post.images.length > 0 && (
+        <Image
+          src={`data:${post.images[0].contentType};base64,${Buffer.from(
+            post.images[0].data
+          ).toString("base64")}`}
+          alt={post.title}
+        />
+      )}
 
       <div>
         <Informations>
@@ -72,7 +74,6 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 40rem;
 `;
 
 const Heading = styled.h1`

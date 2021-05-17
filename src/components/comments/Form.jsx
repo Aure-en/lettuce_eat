@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import TextEditor from "./TextEditor";
+import styled from "styled-components";
+import TextareaAutosize from "react-textarea-autosize";
 
 // If a comment is passed, the form will update it.
 // Otherwise, a new comment document will be created.
@@ -15,8 +16,6 @@ function Form({ postId, parentId, comment }) {
     content: "",
   });
 
-  const EMPTY_REGEX = /{"blocks":\[{"key":"[a-zA-Z0-9]{5}","text":"","type":"[\w]+","depth":0,"inlineStyleRanges":\[],"entityRanges":\[],"data":{}}],"entityMap":{}}/i;
-
   const handleChange = (name, value) => {
     setValues({ ...values, [name]: value });
   };
@@ -30,15 +29,15 @@ function Form({ postId, parentId, comment }) {
 
     // Client-side validation
     let hasErrors = false;
-    if (!values.username) {
-      hasErrors = true;
-      setErrors({ ...errors, username: "Username must be specified." });
-    }
 
-    if (!values.content || EMPTY_REGEX.test(values.content)) {
-      hasErrors = true;
-      setErrors({ ...errors, content: "Comment cannot be empty." });
-    }
+    Object.keys(values).map((key) => {
+      if (!values[key]) {
+        hasErrors = true;
+        setErrors((prev) => {
+          return { ...prev, [key]: `${key} must be specified.` };
+        });
+      }
+    });
 
     if (hasErrors) return;
 
@@ -76,41 +75,36 @@ function Form({ postId, parentId, comment }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Container onSubmit={handleSubmit}>
       <label htmlFor="username">
-        Username
-        <input
+        <Input
           type="text"
           id="username"
           name="username"
           value={values.username}
-          onChange={(e) => handleChange("username", e.target.value)}
+          placeholder="Username"
+          onChange={(e) => handleChange(e.target.name, e.target.value)}
         />
       </label>
       {errors.username && <div>{errors.username}</div>}
 
-      <TextEditor
-        sendContent={(content) =>
-          setValues((prev) => {
-            return { ...prev, content };
-          })
-        }
-        prevContent={comment && comment.content}
-        placeholder="What are you thoughts?"
-      />
+      <label htmlFor="content">
+        <Input
+          as={TextareaAutosize}
+          id="content"
+          name="content"
+          placeholder="Comment"
+          value={values.content}
+          onChange={(e) => handleChange(e.target.name, e.target.value)}
+          minRows={10}
+        />
+      </label>
       {errors.content && <div>{errors.content}</div>}
 
-      <button
-        type="submit"
-        disabled={
-          !values.username ||
-          !values.content ||
-          EMPTY_REGEX.test(values.content)
-        }
-      >
+      <Button type="submit" disabled={!values.username || !values.content}>
         Comment
-      </button>
-    </form>
+      </Button>
+    </Container>
   );
 }
 
@@ -130,3 +124,40 @@ Form.defaultProps = {
   parentId: undefined,
   comment: undefined,
 };
+
+const Container = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: ${(props) => props.theme.background_secondary};
+  padding: 1.5rem 2rem;
+  margin: 1rem 0;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border: none;
+  border-left: 3px solid ${(props) => props.theme.input_border};
+
+  &::placeholder {
+    font-family: "Barlow", sans-serif;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    font-style: italic;
+  }
+`;
+
+const Button = styled.button`
+  align-self: flex-end;
+  margin: 0 2rem;
+  font-family: "Source Sans Pro", "Barlow", sans-serif;
+  text-transform: uppercase;
+  background: ${(props) => props.theme.input_border};
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: ${(props) => props.theme.text_link};
+  cursor: pointer;
+`;

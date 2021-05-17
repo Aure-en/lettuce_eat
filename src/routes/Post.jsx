@@ -18,9 +18,11 @@ function Post({ match }) {
   if (post) {
     return (
       <Wrapper>
-        <PostComponent post={post} />
-        <Form postId={post._id} />
-        <Comments postId={post._id} />
+        <Container>
+          <PostComponent post={post} />
+          <Form postId={post._id} />
+          <Comments postId={post._id} />
+        </Container>
       </Wrapper>
     );
   }
@@ -42,4 +44,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const Container = styled.div`
+  max-width: 40rem;
 `;
