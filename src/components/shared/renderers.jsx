@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import uniqid from "uniqid";
 import { Link } from "react-router-dom";
 
@@ -14,6 +15,11 @@ const renderers = {
     ),
     HEADING: (children) => (
       <div className="heading" key={uniqid()}>
+        {children}
+      </div>
+    ),
+    SUBHEADING: (children) => (
+      <div className="subheading" key={uniqid()}>
         {children}
       </div>
     ),
@@ -50,11 +56,11 @@ const renderers = {
       </ul>
     ),
     "ordered-list-item": (children) => (
-      <ol key={uniqid()}>
+      <Ol key={uniqid()}>
         {children.map((child) => (
           <li key={uniqid()}>{child}</li>
         ))}
-      </ol>
+      </Ol>
     ),
   },
   entities: {
@@ -67,3 +73,13 @@ const renderers = {
 };
 
 export default renderers;
+
+const Ol = styled.ol`
+  & li {
+    margin-bottom: 1rem;
+  }
+
+  & li:last-child {
+    margin-bottom: 0;
+  }
+`;

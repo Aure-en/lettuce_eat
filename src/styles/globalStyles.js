@@ -7,11 +7,12 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Roboto Slab', serif;
     background: ${({ theme }) => theme.bg_app};
     color: ${({ theme }) => theme.text_primary};
     line-height: 1.25rem;
     font-weight: 300;
+    font-size: 0.875rem;
   }
 
   a {

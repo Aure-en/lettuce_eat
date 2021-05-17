@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import useFetch from "../hooks/useFetch";
 import PostComponent from "../components/post/Post";
 import Form from "../components/comments/Form";
@@ -16,11 +17,11 @@ function Post({ match }) {
 
   if (post) {
     return (
-      <>
+      <Wrapper>
         <PostComponent post={post} />
         <Form postId={post._id} />
         <Comments postId={post._id} />
-      </>
+      </Wrapper>
     );
   }
 
@@ -36,3 +37,9 @@ Post.propTypes = {
     }),
   }).isRequired,
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

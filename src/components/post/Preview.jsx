@@ -18,10 +18,10 @@ function Preview({ posts }) {
     while (copy.length > 0) {
       if (even) {
         array.push(copy.splice(0, amount));
-        even = !even;
       } else {
         array.push(copy.splice(0, amount - 1));
       }
+      even = !even;
     }
     setOrganized(array);
   }, [posts]);
@@ -95,8 +95,9 @@ const Content = styled.div`
     100% 75%,
     100% 25%
   ); // Hexagon shape
-  background-image: url(${(props) =>
-    `data:${props.background.contentType};base64,${Buffer.from(
+  background: blue;
+  background-image: ${(props) => props.background && `url(
+    data:${props.background.contentType};base64,${Buffer.from(
       props.background.data
     ).toString("base64")}`});
   background-position: center;
@@ -133,4 +134,6 @@ const LinkBtn = styled(Link)`
   z-index: 5;
   text-transform: uppercase;
   font-weight: 0.875rem;
+  max-width: 70%;
+  text-align: center;
 `;
