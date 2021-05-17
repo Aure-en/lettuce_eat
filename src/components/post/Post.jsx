@@ -59,7 +59,7 @@ Post.propTypes = {
         contentType: PropTypes.string,
         data: PropTypes.shape({
           type: PropTypes.string,
-          data: PropTypes.arrayOf(PropTypes.string),
+          data: PropTypes.arrayOf(PropTypes.number),
         }),
       })
     ),

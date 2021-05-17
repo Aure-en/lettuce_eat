@@ -96,7 +96,7 @@ function Form({ postId, parentId, comment }) {
           placeholder="Comment"
           value={values.content}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
-          minRows={10}
+          minRows={7}
         />
       </label>
       {errors.content && <div>{errors.content}</div>}
@@ -131,7 +131,7 @@ const Container = styled.form`
   width: 100%;
   background: ${(props) => props.theme.background_secondary};
   padding: 1.5rem 2rem;
-  margin: 1rem 0;
+  margin-top: 1rem;
 `;
 
 const Input = styled.input`
@@ -151,7 +151,6 @@ const Input = styled.input`
 
 const Button = styled.button`
   align-self: flex-end;
-  margin: 0 2rem;
   font-family: "Source Sans Pro", "Barlow", sans-serif;
   text-transform: uppercase;
   background: ${(props) => props.theme.input_border};

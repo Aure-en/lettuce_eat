@@ -1,40 +1,72 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import redraft from "redraft";
-import renderers from "../shared/renderers";
+import styled from "styled-components";
 import Form from "./Form";
+import useFetch from "../../hooks/useFetch";
 
-function Comment({ comment }) {
+function Comment({ postId, commentId }) {
   const [isReplying, setIsReplying] = useState(false);
+  const { data: comment } = useFetch(
+    `${process.env.REACT_APP_API_URL}/posts/${postId}/comments/${commentId}`
+  );
 
   return (
-    <div>
-      <div>{comment.username}</div>
-      <div>{redraft(JSON.parse(comment.content), renderers)}</div>
-      <button type="button" onClick={() => setIsReplying(true)}>
-        Reply
-      </button>
+    <>
+      {comment && (
+        <Container>
+          <Username>{comment.username}</Username>
+          <p>{comment.content}</p>
+          <Button type="button" onClick={() => setIsReplying(!isReplying)}>
+            {isReplying ? "Cancel" : "Reply"}
+          </Button>
 
-      {isReplying && <Form postId={comment.post} parentId={comment._id} />}
+          {isReplying && <Form postId={comment.post} parentId={comment._id} />}
 
-      {comment.children.map((child) => (
-        <Comment comment={child} />
-      ))}
-    </div>
+          {comment.children.map((child) => (
+            <Comment postId={postId} commentId={child} />
+          ))}
+        </Container>
+      )}
+    </>
   );
 }
 
 export default Comment;
 
 Comment.propTypes = {
-  comment: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    post: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired,
-    timestamp: PropTypes.string,
-    parent: PropTypes.string,
-    children: PropTypes.arrayOf(PropTypes.string),
-    account: PropTypes.string,
-  }).isRequired,
+  postId: PropTypes.string.isRequired,
+  commentId: PropTypes.string.isRequired,
 };
+
+const Container = styled.li`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0 0 1rem;
+
+  &:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background: ${(props) => props.theme.input_border};
+    left: -1rem;
+    opacity: 0.5;
+  }
+`;
+
+const Username = styled.span`
+  font-weight: 400;
+`;
+
+const Button = styled.button`
+  align-self: flex-end;
+  font-family: "Source Sans Pro", "Barlow", sans-serif;
+  text-transform: uppercase;
+  font-size: 1rem;
+  color: ${(props) => props.theme.input_border};
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  background: none;
+`;
