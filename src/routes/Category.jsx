@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Preview from "../components/categories/Preview";
 import useFetch from "../hooks/useFetch";
 
 function Category({ match }) {
@@ -16,7 +15,6 @@ function Category({ match }) {
     return (
       <>
         <div>{data.name}</div>
-        <Preview category={data} limit={10} />
       </>
     );
   }
