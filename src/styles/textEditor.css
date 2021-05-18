@@ -23,13 +23,14 @@
 
 /* Heading Block */
 .heading {
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.25rem;
+  font-weight: 200;
 }
 
 .subheading {
   text-decoration: underline;
   font-size: 0.9375rem;
+  font-weight: 200;
 }
 
 .strikethrough {
@@ -43,7 +44,6 @@
 .block {
   line-height: 1.5rem;
   margin: .5rem 0;
-  font-family: "Roboto Slab", sans-serif;
   font-size: .875rem;
 }
 

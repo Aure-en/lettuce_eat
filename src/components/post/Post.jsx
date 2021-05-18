@@ -77,8 +77,7 @@ const Container = styled.main`
 `;
 
 const Heading = styled.h1`
-  font-family: "Roboto Slab", serif;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 400;
   margin: 0.5rem 0;
 `;
@@ -96,7 +95,7 @@ const Image = styled.img`
 const Informations = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   margin: 0 5rem;
   justify-items: center;
 `;

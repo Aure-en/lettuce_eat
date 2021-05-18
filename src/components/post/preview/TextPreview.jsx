@@ -47,7 +47,6 @@ const Item = styled.li`
       props.row % 2 === 0 ? 2 * props.column : 2 * props.column - 1} / span 2;
   height: 0;
   padding-bottom: 115%; // Aspect ratio
-  font-family: "Source Sans Pro", "Barlow", "sans-serif";
 `;
 
 const Content = styled.div`

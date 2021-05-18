@@ -90,6 +90,5 @@ const LinkBtn = styled(Link)`
   text-transform: uppercase;
   max-width: 70%;
   text-align: center;
-  font-family: "Source Sans Pro", "Barlow", sans-serif;
   font-size: 1rem;
 `;

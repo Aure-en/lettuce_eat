@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import useFetch from "../../hooks/useFetch";
-import Preview from "./Preview";
+import Preview from "../post/preview/Preview";
 
 function Latest() {
   const { data, error } = useFetch(
@@ -13,10 +13,22 @@ function Latest() {
   }
 
   if (data) {
-    return <Preview posts={data} />;
+    return (
+      <Container>
+        <Preview posts={data} amount={3} />
+      </Container>
+    );
   }
 
   return <></>;
 }
 
 export default Latest;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  margin: 2rem 0;
+`;

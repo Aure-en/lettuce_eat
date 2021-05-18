@@ -142,7 +142,6 @@ const Input = styled.input`
   border-left: 3px solid ${(props) => props.theme.input_border};
 
   &::placeholder {
-    font-family: "Barlow", sans-serif;
     text-transform: uppercase;
     font-size: 0.875rem;
     font-style: italic;
@@ -151,7 +150,6 @@ const Input = styled.input`
 
 const Button = styled.button`
   align-self: flex-end;
-  font-family: "Source Sans Pro", "Barlow", sans-serif;
   text-transform: uppercase;
   background: ${(props) => props.theme.input_border};
   border: none;

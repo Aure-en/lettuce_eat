@@ -61,7 +61,6 @@ const Username = styled.span`
 
 const Button = styled.button`
   align-self: flex-end;
-  font-family: "Source Sans Pro", "Barlow", sans-serif;
   text-transform: uppercase;
   font-size: 1rem;
   color: ${(props) => props.theme.input_border};

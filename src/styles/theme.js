@@ -1,5 +1,5 @@
 const colors = {
-  text_primary: "rgb(0, 0, 0)",
+  text_primary: "rgb(45, 45, 45)",
   text_secondary: "rgb(75, 75, 75)",
   text_tertiary: "rgb(255, 255, 255)",
 
@@ -16,6 +16,10 @@ const colors = {
   text_preview_bg: "rgb(255, 247, 220)",
   text_preview_accent: "rgb(201, 230, 190)",
   text_preview_title: "rgb(215, 238, 206)",
+
+  gradient_primary: "rgb(247, 230, 199)",
+  gradient_secondary: "rgb(156, 211, 154)",
+  gradient_tertiary: "rgb(95, 150, 89)",
 };
 
 export default colors;

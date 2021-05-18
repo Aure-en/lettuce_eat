@@ -7,12 +7,16 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Source Sans Pro', sans-serif;
     background: ${({ theme }) => theme.bg_app};
     color: ${({ theme }) => theme.text_primary};
     line-height: 1.25rem;
     font-weight: 300;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
+  }
+
+  strong {
+    font-weight: bold;
   }
 
   a {
@@ -20,11 +24,15 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
 
+  button {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
   input,
   textarea {
     line-height: 1.25rem;
     font-weight: 300;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
   }
 
   input:focus,
