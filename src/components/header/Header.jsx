@@ -4,16 +4,34 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <Nav>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/all">All Recipes</NavLink>
-      <NavLink to="/categories">Categories</NavLink>
-    </Nav>
+    <Container>
+      <Nav>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/all">All Recipes</NavLink>
+        <NavLink to="/categories">Categories</NavLink>
+      </Nav>
+    </Container>
   );
 }
 
 export default Header;
 
-const Nav = styled.nav``;
+const Container = styled.header`
+  display: flex;
+  justify-content: flex-end;
+`;
 
-const NavLink = styled(Link)``;
+const Nav = styled.nav`
+  margin: 1rem;
+`;
+
+const NavLink = styled(Link)`
+  display: inline-block;
+  margin: 0 1rem;
+  font-size: 0.875rem;
+  color: ${(props) => props.theme.text_primary};
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;

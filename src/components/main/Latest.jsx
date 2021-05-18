@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import useFetch from "../../hooks/useFetch";
-import Preview from "../post/Preview";
+import Preview from "./Preview";
 
 function Latest() {
   const { data, error } = useFetch(

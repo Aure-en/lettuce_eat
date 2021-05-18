@@ -1,0 +1,159 @@
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+// Icons
+import { ReactComponent as NotebookIcon } from "../../../assets/icons/preview/notebook.svg";
+import { ReactComponent as ArrowIcon } from "../../../assets/icons/preview/arrow-right.svg";
+
+function TextPreview({ post, row, column }) {
+  const [hover, setHovered] = useState(false);
+
+  return (
+    <Item
+      row={row}
+      column={column}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <Link to={`/posts/${post._id}`}>
+        <Content>
+          <Decoration>
+            <Hexagon>
+              <NotebookIcon />
+            </Hexagon>
+          </Decoration>
+          <Text>
+            <Title>{post.title}</Title>
+            <p>{post.description}</p>
+          </Text>
+          {hover && (
+            <HexagonArrow>
+              <ArrowIcon />
+            </HexagonArrow>
+          )}
+        </Content>
+      </Link>
+    </Item>
+  );
+}
+
+export default TextPreview;
+
+const Item = styled.li`
+  position: relative;
+  grid-row: ${(props) => 2 * props.row - 1} / span 3;
+  grid-column: ${(props) =>
+      props.row % 2 === 0 ? 2 * props.column : 2 * props.column - 1} / span 2;
+  height: 0;
+  padding-bottom: 115%; // Aspect ratio
+  font-family: "Source Sans Pro", "Barlow", "sans-serif";
+`;
+
+const Content = styled.div`
+  position: absolute; // Position absolute is needed for height: 100% to work.
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  clip-path: polygon(
+    50% 0%,
+    0% 25%,
+    0% 75%,
+    50% 100%,
+    100% 75%,
+    100% 25%
+  ); // Hexagon shape
+  display: flex;
+  justify-content: center;
+  background: ${(props) => props.theme.text_preview_bg};
+
+  // Fade
+  &:after {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    content: "";
+    background: linear-gradient(
+      to top,
+      ${(props) => props.theme.text_preview_bg} 20%,
+      transparent 80%
+    );
+  }
+`;
+
+const Hexagon = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.75rem;
+  background: ${(props) => props.theme.text_preview_accent};
+  color: ${(props) => props.theme.text_secondary};
+  clip-path: polygon(
+    50% 0%,
+    0% 25%,
+    0% 75%,
+    50% 100%,
+    100% 75%,
+    100% 25%
+  ); // Hexagon shape
+  z-index: 1;
+`;
+
+const HexagonArrow = styled(Hexagon)`
+  position: absolute;
+  bottom: 7.5%;
+`;
+
+const line = `
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  top: 2rem;
+  box-sizing: content-box;
+  opacity: 0.8;
+`;
+
+const Decoration = styled.span`
+  position: absolute;
+  top: 7.5%;
+
+  &:before {
+    ${line}
+    border-right: 2rem solid ${(props) => props.theme.text_preview_accent};
+    border-left: 4px solid ${(props) => props.theme.text_preview_accent};
+    left: -3.5rem;
+    transform: rotate(-30deg);
+  }
+
+  &:after {
+    ${line}
+    border-left: 2rem solid ${(props) => props.theme.text_preview_accent};
+    border-right: 4px solid ${(props) => props.theme.text_preview_accent};
+    right: -3.5rem;
+    transform: rotate(30deg);
+  }
+`;
+
+const Text = styled.div`
+  position: absolute;
+  bottom: 20%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 60%;
+  height: 50%;
+`;
+
+const Title = styled.div`
+  padding: 0.1rem 0.5rem;
+  align-self: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-style: italic;
+  background: ${(props) => props.theme.text_preview_title};
+  color: ${(props) => props.theme.text_secondary};
+`;
