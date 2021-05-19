@@ -20,7 +20,7 @@ function Categories() {
           <p>Whether you browse them by <Underline>meal type</Underline> or by <Underline>ingredient</Underline>, we're sure you'll find just what you are looking for.</p>
         </Header>
         {categories && (
-          <List title="courses" type="categories" data={categories} />
+          <List title="recipes types" type="categories" data={categories} />
         )}
         {ingredients && (
           <List title="ingredients" type="ingredients" data={ingredients} />

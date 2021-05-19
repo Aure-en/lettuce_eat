@@ -98,7 +98,6 @@ Sort.propTypes = {
 const Dropdown = styled.div`
   position: relative;
   display: inline-block;
-  margin-left: 1rem;
   z-index: 5;
   color: ${(props) => props.theme.text_secondary};
   padding: 0.5rem 0;
@@ -123,17 +122,14 @@ const DropdownList = styled.div`
   background: ${(props) => props.theme.background_primary};
   border: 1px solid ${(props) => props.theme.text_secondary};
   max-height: 30rem;
+  min-width: 110%; // Name A-Z takes 2 lines otherwise.
   z-index: 5;
 `;
 
 const Option = styled.button`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-gap: 0.75rem;
-  align-items: center;
   padding: 0.35rem 1rem;
-  justify-items: start;
   color: ${(props) => props.theme.text_secondary};
+  text-align: start;
 
   &:hover {
     background: ${(props) => props.theme.background_hover};

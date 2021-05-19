@@ -2,6 +2,7 @@ const colors = {
   text_primary: "rgb(45, 45, 45)",
   text_secondary: "rgb(75, 75, 75)",
   text_tertiary: "rgb(255, 255, 255)",
+  text_silent: "rgb(200, 200, 200)",
 
   background_primary: "rgb(255, 255, 255)",
   background_secondary: "rgb(255, 245, 213)",

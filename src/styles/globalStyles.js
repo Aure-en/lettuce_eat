@@ -19,6 +19,10 @@ const GlobalStyles = createGlobalStyle`
     font-weight: bold;
   }
 
+  small {
+    font-size: 0.875rem;
+  }
+
   a {
     color: inherit;
     text-decoration: none;
