@@ -9,17 +9,15 @@ function useFetch(url) {
     (async () => {
       setLoading(true);
       const response = await fetch(url);
-      try {
-        // We got the correct response, and received some JSON containing the data.
-        const json = await response.json();
+      const json = await response.json();
+      if (json.error) {
+        setError(json.error);
+        setLoading(false);
+        console.log(json.error);
+      } else {
         setData(json);
         setLoading(false);
         console.log(json);
-      } catch {
-        // We got an error as text.
-        setError(response);
-        setLoading(false);
-        console.log(response);
       }
     })();
   }, [url]);
@@ -27,7 +25,7 @@ function useFetch(url) {
   return {
     data,
     error,
-    loading
+    loading,
   };
 }
 

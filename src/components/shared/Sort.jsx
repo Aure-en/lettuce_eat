@@ -6,7 +6,7 @@ import { ReactComponent as IconDown } from "../../assets/icons/arrow-down.svg";
 
 function Sort({ send }) {
   const [sort, setSort] = useState({
-    sort: "date",
+    sort_by: "date",
     order: "desc",
   });
   const dropdownRef = useRef();
@@ -15,7 +15,7 @@ function Sort({ send }) {
     setIsDropdownOpen,
     handleChoice,
     current,
-  } = useDropdown(dropdownRef, "New");
+  } = useDropdown(dropdownRef, "Latest");
 
   useEffect(() => {
     send(sort);
@@ -38,21 +38,21 @@ function Sort({ send }) {
           <Option
             type="button"
             onClick={() => {
-              handleChoice("New");
+              handleChoice("Latest");
               setSort({
-                sort: "date",
+                sort_by: "date",
                 order: "desc",
               });
             }}
           >
-            New
+            Latest
           </Option>
           <Option
             type="button"
             onClick={() => {
               handleChoice("Earliest");
               setSort({
-                sort: "date",
+                sort_by: "date",
                 order: "asc",
               });
             }}
@@ -64,7 +64,7 @@ function Sort({ send }) {
             onClick={() => {
               handleChoice("Name (A - Z)");
               setSort({
-                sort: "alphabetical",
+                sort_by: "alphabetical",
                 order: "asc",
               });
             }}
@@ -76,7 +76,7 @@ function Sort({ send }) {
             onClick={() => {
               handleChoice("Name (Z - A)");
               setSort({
-                sort: "alphabetical",
+                sort_by: "alphabetical",
                 order: "desc",
               });
             }}

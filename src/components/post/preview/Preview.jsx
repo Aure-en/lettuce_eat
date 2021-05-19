@@ -47,6 +47,7 @@ function Preview({ posts, amount }) {
               post={post}
               row={organized.findIndex((row) => row.includes(post)) + 1}
               column={
+                organized.find((row) => row.includes(post)) &&
                 organized
                   .find((row) => row.includes(post))
                   .findIndex((col) => col === post) + 1

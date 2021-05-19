@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import List from "../components/all/List";
 import Sidebar from "../components/all/Sidebar";
 
 function All() {
+  const [queries, setQueries] = useState({});
   return (
     <Wrapper>
       <Container>
@@ -18,8 +19,8 @@ function All() {
           </p>
         </Header>
         <Content>
-          <List />
-          <Sidebar />
+          <List queries={queries} />
+          <Sidebar send={setQueries} />
         </Content>
       </Container>
     </Wrapper>
