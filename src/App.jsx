@@ -6,6 +6,7 @@ import Header from "./components/header/Header";
 import All from "./routes/All";
 import Categories from "./routes/Categories";
 import Category from "./routes/Category";
+import Ingredient from "./routes/Ingredient";
 import Main from "./routes/Main";
 import NotFound from "./routes/NotFound";
 import Post from "./routes/Post";
@@ -25,6 +26,7 @@ function App() {
               <Route exact path="/" component={Main} />
               <Route exact path="/categories" component={Categories} />
               <Route path="/categories/:category" component={Category} />
+              <Route path="/ingredients/:ingredient" component={Ingredient} />
               <Route exact path="/all" component={All} />
               <Route path="/posts/:postId" component={Post} />
               <Route component={NotFound} />

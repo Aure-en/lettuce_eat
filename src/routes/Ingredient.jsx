@@ -4,13 +4,13 @@ import styled from "styled-components";
 import useFetch from "../hooks/useFetch";
 import Posts from "../components/categories/Category";
 
-function Category({ match }) {
+function Ingredient({ match }) {
   const { data, error } = useFetch(
-    `${process.env.REACT_APP_API_URL}/categories/${match.params.category}`
+    `${process.env.REACT_APP_API_URL}/ingredients/${match.params.ingredient}`
   );
 
   if (error) {
-    return <div>Category not found.</div>;
+    return <div>Ingredient not found.</div>;
   }
 
   if (data) {
@@ -19,9 +19,9 @@ function Category({ match }) {
         <Container>
           <Header>
             <Heading>{data.name}</Heading>
-            <p>{data.description}</p>
+            {data.description && <p>{data.description}</p>}
           </Header>
-          <Posts type="categories" categoryId={data._id} />
+          <Posts type="ingredients" categoryId={data._id} />
         </Container>
       </Wrapper>
     );
@@ -30,12 +30,12 @@ function Category({ match }) {
   return <></>;
 }
 
-export default Category;
+export default Ingredient;
 
-Category.propTypes = {
+Ingredient.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      category: PropTypes.string,
+      ingredient: PropTypes.string,
     }),
   }).isRequired,
 };

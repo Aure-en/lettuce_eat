@@ -5,8 +5,8 @@ import useFetch from "../../hooks/useFetch";
 import Sort from "../shared/Sort";
 import Preview from "../post/preview/Preview";
 
-function Category({ categoryId }) {
-  const initial = `${process.env.REACT_APP_API_URL}/categories/${categoryId}/posts`;
+function Category({ type, categoryId }) {
+  const initial = `${process.env.REACT_APP_API_URL}/${type}/${categoryId}/posts`;
   const [url, setUrl] = useState(initial);
   const { data, loading } = useFetch(url);
 
@@ -28,6 +28,7 @@ function Category({ categoryId }) {
 export default Category;
 
 Category.propTypes = {
+  type: PropTypes.string.isRequired,
   categoryId: PropTypes.string.isRequired,
 };
 
