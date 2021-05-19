@@ -22,10 +22,14 @@ const GlobalStyles = createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
+    cursor: pointer;
   }
 
   button {
     font-family: 'Source Sans Pro', sans-serif;
+    background: transparent;
+    border: none;
+    cursor: pointer;
   }
 
   input,

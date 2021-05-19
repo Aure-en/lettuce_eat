@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import useDropdown from "../../hooks/useDropdown";
+import { ReactComponent as IconDown } from "../../assets/icons/arrow-down.svg";
 
 function Sort({ send }) {
   const [sort, setSort] = useState({
@@ -14,7 +15,7 @@ function Sort({ send }) {
     setIsDropdownOpen,
     handleChoice,
     current,
-  } = useDropdown(dropdownRef);
+  } = useDropdown(dropdownRef, "New");
 
   useEffect(() => {
     send(sort);
@@ -29,6 +30,7 @@ function Sort({ send }) {
         Sort by:
         {"\u00A0"}
         <CurrentChoice>{current}</CurrentChoice>
+        <IconDown />
       </DropdownHeader>
 
       {isDropdownOpen && (
@@ -36,19 +38,19 @@ function Sort({ send }) {
           <Option
             type="button"
             onClick={() => {
-              handleChoice("Newest");
+              handleChoice("New");
               setSort({
                 sort: "date",
                 order: "desc",
               });
             }}
           >
-            Newest
+            New
           </Option>
           <Option
             type="button"
             onClick={() => {
-              handleChoice("Earlier");
+              handleChoice("Earliest");
               setSort({
                 sort: "date",
                 order: "asc",
@@ -106,8 +108,6 @@ const DropdownHeader = styled.div`
   display: flex;
   align-items: center;
   text-transform: uppercase;
-  font-size: 0.75rem;
-  font-weight: 500;
   cursor: pointer;
 `;
 
@@ -120,11 +120,10 @@ const DropdownList = styled.div`
   right: 0;
   display: flex;
   flex-direction: column;
-  background: ${(props) => props.theme.bg_container};
+  background: ${(props) => props.theme.background_primary};
   border: 1px solid ${(props) => props.theme.text_secondary};
   max-height: 30rem;
   z-index: 5;
-  font-size: 0.75rem;
 `;
 
 const Option = styled.button`
@@ -134,10 +133,9 @@ const Option = styled.button`
   align-items: center;
   padding: 0.35rem 1rem;
   justify-items: start;
-  font-weight: 500;
   color: ${(props) => props.theme.text_secondary};
 
   &:hover {
-    background: ${(props) => props.theme.accent_soft};
+    background: ${(props) => props.theme.background_hover};
   }
 `;

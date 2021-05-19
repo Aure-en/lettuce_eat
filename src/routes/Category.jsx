@@ -17,7 +17,10 @@ function Category({ match }) {
     return (
       <Wrapper>
         <Container>
-          <Heading>{data.name}</Heading>
+          <Header>
+            <Heading>{data.name}</Heading>
+            <p>{data.description}</p>
+          </Header>
           <Posts categoryId={data._id} />
         </Container>
       </Wrapper>
@@ -50,6 +53,33 @@ const Container = styled.div`
   max-width: 900px;
 `;
 
+const Header = styled.header`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 25rem;
+  text-align: center;
+`;
+
 const Heading = styled.h1`
+  position: relative;
   font-weight: 300;
+  align-self: stretch;
+  margin-bottom: 3rem;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 3px;
+    background: ${(props) => props.theme.gradient_primary};
+    background: linear-gradient(
+      to left,
+      ${(props) =>
+        `${props.theme.gradient_primary} 0%, ${props.theme.gradient_secondary} 100%`}
+    );
+  }
 `;

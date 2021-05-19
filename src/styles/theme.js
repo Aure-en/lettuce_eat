@@ -6,6 +6,7 @@ const colors = {
   background_primary: "rgb(255, 255, 255)",
   background_secondary: "rgb(255, 245, 213)",
   background_tertiary: "rgb(213, 234, 204)",
+  background_hover: "rgb(242, 249, 239)",
 
   text_link: "rgb(255, 255, 255)",
   input_border: "rgb(154, 197, 162)",
@@ -20,6 +21,8 @@ const colors = {
   gradient_primary: "rgb(247, 230, 199)",
   gradient_secondary: "rgb(156, 211, 154)",
   gradient_tertiary: "rgb(95, 150, 89)",
+
+  accent: "rgb(154, 197, 162)",
 };
 
 export default colors;

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-function useDropdown(ref, closeOnClickOutside = true) {
+function useDropdown(ref, initial, closeOnClickOutside = true) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [current, setCurrent] = useState();
+  const [current, setCurrent] = useState(initial || "");
 
   const closeDropdown = () => {
     setIsDropdownOpen(false);
