@@ -20,9 +20,9 @@ function List({ queries }) {
     }
 
     Object.keys(queries).map((query) => {
-      if (queries[query] instanceof Array) {
+      if (queries[query] instanceof Array && queries[query].length > 0) {
         url += `&${query}=${queries[query].join(",")}`;
-      } else {
+      } else if (!(queries[query] instanceof Array) && queries[query] !== "") {
         url += `&${query}=${queries[query]}`;
       }
     });

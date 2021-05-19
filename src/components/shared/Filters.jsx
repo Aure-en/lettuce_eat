@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import useFetch from "../../hooks/useFetch";
 import check from "../../assets/icons/check.svg";
 
-function Filters() {
+function Filters({ send }) {
   const [selected, setSelected] = useState({
     category: "",
     ingredients: [],
@@ -29,6 +30,10 @@ function Filters() {
     }
     setSelected({ ...selected, ingredients });
   };
+
+  useEffect(() => {
+    send(selected);
+  }, [selected]);
 
   return (
     <div>
@@ -86,6 +91,10 @@ function Filters() {
 }
 
 export default Filters;
+
+Filters.propTypes = {
+  send: PropTypes.func.isRequired,
+};
 
 const Container = styled.div``;
 

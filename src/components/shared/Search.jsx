@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 
@@ -34,6 +35,10 @@ function Search({ send }) {
 }
 
 export default Search;
+
+Search.propTypes = {
+  send: PropTypes.func.isRequired,
+};
 
 const Form = styled.form`
   display: flex;

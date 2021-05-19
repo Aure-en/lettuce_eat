@@ -10,7 +10,7 @@ function Sidebar({ send }) {
     <Container>
       <Search send={(search) => send(search)} />
       <Sort send={(sort) => send(sort)} />
-      <Filters />
+      <Filters send={(filters) => send(filters)} />
     </Container>
   );
 }
