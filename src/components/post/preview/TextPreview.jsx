@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -39,6 +40,21 @@ function TextPreview({ post, row, column }) {
 }
 
 export default TextPreview;
+
+TextPreview.propTypes = {
+  post: PropTypes.shape({
+    _id: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
+  row: PropTypes.number,
+  column: PropTypes.number,
+};
+
+TextPreview.defaultProps = {
+  row: -1,
+  column: -1,
+};
 
 const Item = styled.li`
   position: relative;

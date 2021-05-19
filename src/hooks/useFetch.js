@@ -3,20 +3,21 @@ import { useState, useEffect } from "react";
 function useFetch(url) {
   const [data, setData] = useState();
   const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
       const response = await fetch(url);
-      const text = await response.text();
       try {
         // We got the correct response, and received some JSON containing the data.
-        const json = JSON.parse(text);
+        const json = await response.json();
         setData(json);
-        console.log(json);
+        setLoading(false);
       } catch {
         // We got an error as text.
-        setError(text);
-        console.log(text);
+        setError(response);
+        setLoading(false);
       }
     })();
   }, [url]);
@@ -24,6 +25,7 @@ function useFetch(url) {
   return {
     data,
     error,
+    loading
   };
 }
 

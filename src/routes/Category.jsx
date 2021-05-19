@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import useFetch from "../hooks/useFetch";
+import Posts from "../components/categories/Category";
 
 function Category({ match }) {
   const { data, error } = useFetch(
@@ -13,9 +15,12 @@ function Category({ match }) {
 
   if (data) {
     return (
-      <>
-        <div>{data.name}</div>
-      </>
+      <Wrapper>
+        <Container>
+          <Heading>{data.name}</Heading>
+          <Posts categoryId={data._id} />
+        </Container>
+      </Wrapper>
     );
   }
 
@@ -31,3 +36,20 @@ Category.propTypes = {
     }),
   }).isRequired,
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+`;
+
+const Heading = styled.h1`
+  font-weight: 300;
+`;

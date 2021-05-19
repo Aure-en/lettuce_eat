@@ -25,6 +25,30 @@ function HoverPreview({ post, row, column }) {
 
 export default HoverPreview;
 
+HoverPreview.propTypes = {
+  post: PropTypes.shape({
+    _id: PropTypes.string,
+    title: PropTypes.string,
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        contentType: PropTypes.string,
+        data: PropTypes.shape({
+          type: PropTypes.string,
+          data: PropTypes.arrayOf(PropTypes.number),
+          name: PropTypes.string,
+        }),
+      })
+    ),
+  }).isRequired,
+  row: PropTypes.number,
+  column: PropTypes.number,
+};
+
+HoverPreview.defaultProps = {
+  row: -1,
+  column: -1,
+};
+
 const Item = styled.li`
   position: relative;
   grid-row: ${(props) => 2 * props.row - 1} / span 3;

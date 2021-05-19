@@ -1,64 +1,39 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import useFetch from "../../hooks/useFetch";
 
-function List() {
-  const { data: categories } = useFetch(
-    `${process.env.REACT_APP_API_URL}/categories`
-  );
-  const { data: ingredients } = useFetch(
-    `${process.env.REACT_APP_API_URL}/ingredients`
-  );
-
+function List({ title, type, data }) {
   return (
-    <Wrapper>
-      <Container>
-        <Header>
-          <Heading>Categories</Heading>
-        </Header>
-        <Ul>
-          {categories &&
-            categories.map((category) => (
-              <Li key={category._id}>
-                <StyledLink to={`/categories/${category.name.toLowerCase()}`}>
-                  {category.name}
-                </StyledLink>
-              </Li>
-            ))}
-        </Ul>
-
-        <Header>
-          <Heading>Ingredients</Heading>
-        </Header>
-        <Ul>
-          {ingredients &&
-            ingredients.map((ingredient) => (
-              <Li key={ingredient._id}>
-                <StyledLink
-                  to={`/ingredients/${ingredient.name.toLowerCase()}`}
-                >
-                  {ingredient.name}
-                </StyledLink>
-              </Li>
-            ))}
-        </Ul>
-      </Container>
-    </Wrapper>
+    <>
+      <Header>
+        <Heading>{title}</Heading>
+      </Header>
+      <Ul>
+        {data.map((item) => (
+          <Li key={item._id}>
+            <StyledLink to={`/${type}/${item.name.toLowerCase()}`}>
+              {item.name}
+            </StyledLink>
+          </Li>
+        ))}
+      </Ul>
+    </>
   );
 }
 
 export default List;
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const Container = styled.div`
-  max-width: 40rem;
-  width: 100vw;
-`;
+List.propTypes = {
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      _id: PropTypes.string,
+    })
+  ).isRequired,
+};
 
 const Header = styled.div`
   position: relative;
@@ -82,6 +57,7 @@ const Header = styled.div`
 `;
 
 const Heading = styled.h2`
+  text-transform: capitalize;
   font-weight: 300;
 `;
 

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import HoverPreview from "./HoverPreview";
 import TextPreview from "./TextPreview";
 
-function Preview({ posts, amount = 3 }) {
+function Preview({ posts, amount }) {
   const [organized, setOrganized] = useState();
 
   // Reorganize posts into several arrays to create the honeycomb effect.
@@ -32,9 +31,11 @@ function Preview({ posts, amount = 3 }) {
         posts.map((post) =>
           post.images.length > 0 ? (
             <HoverPreview
+              key={post._id}
               post={post}
               row={organized.findIndex((row) => row.includes(post)) + 1}
               column={
+                organized.find((row) => row.includes(post)) &&
                 organized
                   .find((row) => row.includes(post))
                   .findIndex((col) => col === post) + 1
@@ -42,6 +43,7 @@ function Preview({ posts, amount = 3 }) {
             />
           ) : (
             <TextPreview
+              key={post._id}
               post={post}
               row={organized.findIndex((row) => row.includes(post)) + 1}
               column={
@@ -57,6 +59,21 @@ function Preview({ posts, amount = 3 }) {
 }
 
 export default Preview;
+
+Preview.propTypes = {
+  posts: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string,
+      title: PropTypes.string,
+      description: PropTypes.string,
+    })
+  ).isRequired,
+  amount: PropTypes.number,
+};
+
+Preview.defaultProps = {
+  amount: 3,
+};
 
 const Grid = styled.ul`
   display: grid;
