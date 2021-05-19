@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 
-function Search() {
+function Search({ send }) {
   const [search, setSearch] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
+    send({
+      search,
+    });
   };
 
   return (
@@ -59,5 +62,4 @@ const Button = styled.button`
   &:hover {
     border: 2px inset ${(props) => props.theme.text_preview_accent};
   }
-
 `;

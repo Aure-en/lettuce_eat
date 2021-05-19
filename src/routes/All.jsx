@@ -20,7 +20,7 @@ function All() {
         </Header>
         <Content>
           <List queries={queries} />
-          <Sidebar send={setQueries} />
+          <Sidebar send={(update) => setQueries({ ...queries, ...update })} />
         </Content>
       </Container>
     </Wrapper>

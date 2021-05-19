@@ -8,7 +8,7 @@ import Sort from "../shared/Sort";
 function Sidebar({ send }) {
   return (
     <Container>
-      <Search />
+      <Search send={(search) => send(search)} />
       <Sort send={(sort) => send(sort)} />
       <Filters />
     </Container>
