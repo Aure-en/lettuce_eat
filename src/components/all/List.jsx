@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Preview from "../post/preview/Preview";
+import Titles from "./Titles";
 import useFetch from "../../hooks/useFetch";
 
 function List({ queries }) {
@@ -30,7 +31,12 @@ function List({ queries }) {
     console.log(url);
   }, [queries]);
 
-  return <>{posts && <Preview posts={posts} />}</>;
+  return (
+    <>
+      {posts && <Preview posts={posts} />}
+      {/* {posts && <Titles posts={posts} />} */}
+    </>
+  );
 }
 
 export default List;
@@ -40,11 +46,10 @@ List.propTypes = {
     sort_by: PropTypes.string,
     search: PropTypes.string,
     order: PropTypes.oneOf(["asc", "desc"]),
-    ingredients: PropTypes.arrayOf(PropTypes.string)
+    ingredients: PropTypes.arrayOf(PropTypes.string),
   }),
 };
 
 List.defaultProps = {
   queries: {},
 };
-

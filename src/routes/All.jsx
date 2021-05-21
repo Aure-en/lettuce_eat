@@ -39,7 +39,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 900px;
+  width: 80%;
 `;
 
 const Header = styled.header`
@@ -76,6 +76,8 @@ const Heading = styled.h1`
 const Content = styled.div`
   display: grid;
   margin: 2rem 0;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr 12.5rem;
   grid-gap: 2rem;
+  width: 100%;
+  align-items: start;
 `;
