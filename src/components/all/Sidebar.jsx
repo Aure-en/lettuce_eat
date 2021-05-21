@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Search from "../shared/Search";
-import Filters from "../shared/Filters";
+import Filters from "../shared/filters/Filters";
 import Sort from "../shared/Sort";
 
 function Sidebar({ send }) {

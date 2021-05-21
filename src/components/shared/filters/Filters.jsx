@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import useFetch from "../../hooks/useFetch";
-import check from "../../assets/icons/check.svg";
+import useFetch from "../../../hooks/useFetch";
+import check from "../../../assets/icons/check.svg";
 
 function Filters({ send }) {
   const [selected, setSelected] = useState({
     category: "",
-    ingredients: [],
+    ingredient: [],
   });
 
   const { data: categories } = useFetch(
@@ -17,18 +17,24 @@ function Filters({ send }) {
     `${process.env.REACT_APP_API_URL}/ingredients`
   );
 
+  const handleCategory = (e) => {
+    if (selected.category === e.target.value) {
+      setSelected({ ...selected, category: "" });
+    } else {
+      setSelected({ ...selected, category: e.target.value });
+    }
+  };
+
   const handleIngredient = (e) => {
-    let ingredients = [...selected.ingredients];
+    let ingredient = [...selected.ingredient];
     // If the ingredient is in selected, unchecks.
-    if (selected.ingredients.includes(e.target.value)) {
-      ingredients = ingredients.filter(
-        (ingredient) => ingredient !== e.target.value
-      );
+    if (selected.ingredient.includes(e.target.value)) {
+      ingredient = ingredient.filter((item) => item !== e.target.value);
       // Else, adds it to the checked list.
     } else {
-      ingredients.push(e.target.value);
+      ingredient.push(e.target.value);
     }
-    setSelected({ ...selected, ingredients });
+    setSelected({ ...selected, ingredient });
   };
 
   useEffect(() => {
@@ -51,14 +57,12 @@ function Filters({ send }) {
             >
               {category.name}
               <Input
-                type="radio"
+                type="checkbox"
                 id={category._id}
-                name="category"
+                name={category._id}
                 value={category._id}
-                onChange={(e) =>
-                  setSelected({ ...selected, category: e.target.value })
-                }
                 checked={selected.category === category._id}
+                onChange={handleCategory}
               />
             </Label>
           ))}
@@ -71,7 +75,7 @@ function Filters({ send }) {
             <Label
               key={ingredient._id}
               htmlFor={ingredient._id}
-              $checked={selected.ingredients.includes(ingredient._id)}
+              $checked={selected.ingredient.includes(ingredient._id)}
             >
               {ingredient.name}
 
@@ -81,7 +85,7 @@ function Filters({ send }) {
                 name={ingredient._id}
                 value={ingredient._id}
                 onChange={handleIngredient}
-                checked={selected.ingredients.includes(ingredient._id)}
+                checked={selected.ingredient.includes(ingredient._id)}
               />
             </Label>
           ))}

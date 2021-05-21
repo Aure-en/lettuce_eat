@@ -10,14 +10,14 @@ function useFetch(url) {
       setLoading(true);
       const response = await fetch(url);
       const json = await response.json();
+      console.log(response.headers.get('count'));
+      console.log(json);
       if (json.error) {
         setError(json.error);
         setLoading(false);
-        console.log(json.error);
       } else {
         setData(json);
         setLoading(false);
-        console.log(json);
       }
     })();
   }, [url]);

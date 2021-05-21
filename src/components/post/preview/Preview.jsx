@@ -27,7 +27,7 @@ function Preview({ posts, amount }) {
 
   return (
     <Grid amount={amount}>
-      {organized &&
+      {organized && posts &&
         posts.map((post) =>
           post.images.length > 0 ? (
             <HoverPreview

@@ -4,7 +4,7 @@ import useFetch from "../../hooks/useFetch";
 import Preview from "../post/preview/Preview";
 
 function Latest() {
-  const { data, error } = useFetch(
+  const { data: posts, error } = useFetch(
     `${process.env.REACT_APP_API_URL}/posts?page=1&limit=10`
   );
 
@@ -12,10 +12,10 @@ function Latest() {
     return <div>{error}</div>;
   }
 
-  if (data) {
+  if (posts) {
     return (
       <Container>
-        <Preview posts={data} amount={3} />
+        <Preview posts={posts} amount={3} />
       </Container>
     );
   }
