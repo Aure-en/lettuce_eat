@@ -15,7 +15,7 @@ function Category({ type, categoryId }) {
       <SortContainer>
         <Sort
           send={(query) =>
-            setUrl(`${initial}?sort_by=${query.sort}&order=${query.order}`)
+            setUrl(`${initial}?sort_by=${query.sort_by}&order=${query.order}`)
           }
         />
       </SortContainer>

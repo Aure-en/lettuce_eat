@@ -3,14 +3,16 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Search from "../shared/Search";
 import Filters from "../shared/filters/Filters";
+import Layout from "../shared/Layout";
 import Sort from "../shared/Sort";
 
-function Sidebar({ send }) {
+function Sidebar({ setQueries, setLayout }) {
   return (
     <Container>
-      <Search send={(search) => send(search)} />
-      <Sort send={(sort) => send(sort)} />
-      <Filters send={(filters) => send(filters)} />
+      <Search send={(search) => setQueries(search)} />
+      <Layout send={(layout) => setLayout(layout)} />
+      <Sort send={(sort) => setQueries(sort)} />
+      <Filters send={(filters) => setQueries(filters)} />
     </Container>
   );
 }
@@ -18,10 +20,14 @@ function Sidebar({ send }) {
 export default Sidebar;
 
 Sidebar.propTypes = {
-  send: PropTypes.func.isRequired,
+  setQueries: PropTypes.func.isRequired,
+  setLayout: PropTypes.func.isRequired,
 };
 
 const Container = styled.aside`
+  display: flex;
+  flex-direction: column;
+  justify-self: end;
   & > * {
     margin: 0.5rem 0;
   }

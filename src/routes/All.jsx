@@ -4,6 +4,7 @@ import List from "../components/all/List";
 import Sidebar from "../components/all/Sidebar";
 
 function All() {
+  const [layout, setLayout] = useState("preview");
   const [queries, setQueries] = useState({});
   return (
     <Wrapper>
@@ -19,8 +20,11 @@ function All() {
           </p>
         </Header>
         <Content>
-          <List queries={queries} />
-          <Sidebar send={(update) => setQueries({ ...queries, ...update })} />
+          <List queries={queries} layout={layout} />
+          <Sidebar
+            setQueries={(update) => setQueries({ ...queries, ...update })}
+            setLayout={(update) => setLayout(update)}
+          />
         </Content>
       </Container>
     </Wrapper>
