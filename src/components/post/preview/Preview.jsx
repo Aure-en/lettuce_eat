@@ -76,7 +76,7 @@ Preview.defaultProps = {
   amount: 3,
 };
 
-const Grid = styled.ul`
+const Grid = styled.main`
   display: grid;
   list-style-type: none;
   margin: 0;

@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import useFetch from "../hooks/useFetch";
-import Posts from "../components/categories/Category";
+import Posts from "../components/categories/Posts";
+import Sort from "../components/shared/Sort";
+import Layout from "../components/shared/Layout";
 
 function Category({ match }) {
+  const [layout, setLayout] = useState("preview");
+  const [sort, setSort] = useState({
+    sort_by: "date",
+    order: "desc",
+  });
   const { data, error } = useFetch(
     `${process.env.REACT_APP_API_URL}/categories/${match.params.category}`
   );
@@ -21,7 +28,17 @@ function Category({ match }) {
             <Heading>{data.name}</Heading>
             <p>{data.description}</p>
           </Header>
-          <Posts type="categories" categoryId={data._id} />
+          <Settings>
+            <Sort send={(update) => setSort(update)} />
+            <Layout send={(update) => setLayout(update)} />
+          </Settings>
+          <Posts
+            type="categories"
+            category={data}
+            page={match.params.page}
+            sort={sort}
+            layout={layout}
+          />
         </Container>
       </Wrapper>
     );
@@ -36,6 +53,7 @@ Category.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       category: PropTypes.string,
+      page: PropTypes.string,
     }),
   }).isRequired,
 };
@@ -82,4 +100,11 @@ const Heading = styled.h1`
         `${props.theme.gradient_primary} 0%, ${props.theme.gradient_secondary} 100%`}
     );
   }
+`;
+
+const Settings = styled.div`
+  display: grid;
+  grid-gap: 0.5rem;
+  align-self: flex-end;
+  margin: 2rem 0;
 `;

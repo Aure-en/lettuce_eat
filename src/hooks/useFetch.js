@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 function useFetch(url) {
   const [data, setData] = useState();
+  const [count, setCount] = useState(0);
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -10,13 +11,13 @@ function useFetch(url) {
       setLoading(true);
       const response = await fetch(url);
       const json = await response.json();
-      console.log(response.headers.get('count'));
-      console.log(json);
       if (json.error) {
         setError(json.error);
+        setCount(0);
         setLoading(false);
       } else {
         setData(json);
+        setCount(response.headers.get("count"));
         setLoading(false);
       }
     })();
@@ -24,6 +25,7 @@ function useFetch(url) {
 
   return {
     data,
+    count,
     error,
     loading,
   };

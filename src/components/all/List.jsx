@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Preview from "../post/preview/Preview";
-import Titles from "./Titles";
+import Titles from "../post/preview/Titles";
+import Pagination from "../shared/Pagination";
 import useFetch from "../../hooks/useFetch";
 
-function List({ queries, layout }) {
+function List({ queries, layout, page }) {
   const [limit, setLimit] = useState(10);
-  const initial = `${process.env.REACT_APP_API_URL}/posts?page=1&limit=${limit}`;
+  const initial = `${process.env.REACT_APP_API_URL}/posts?page=${page}&limit=${limit}`;
   const [url, setUrl] = useState(initial);
-  const { data: posts } = useFetch(url);
+  const { data: posts, count } = useFetch(url);
 
   useEffect(() => {
     // Add queries to the url
@@ -29,8 +30,7 @@ function List({ queries, layout }) {
       }
     });
     setUrl(url);
-    console.log(url);
-  }, [queries, limit]);
+  }, [queries, limit, page]);
 
   // If we are displaying image preview, only display posts 10 per page.
   // If we are displaying the recipe names only, display 100 posts per page.
@@ -45,14 +45,22 @@ function List({ queries, layout }) {
   }
 
   return (
-    <>
+    <div>
       {posts &&
         (layout === "preview" ? (
           <Preview posts={posts} />
         ) : (
           <Titles posts={posts} />
         ))}
-    </>
+
+      {Math.ceil(count / limit) > 1 && (
+        <Pagination
+          current={+page}
+          total={Math.ceil(count / limit)}
+          url="/recipes"
+        />
+      )}
+    </div>
   );
 }
 
@@ -66,9 +74,11 @@ List.propTypes = {
     ingredients: PropTypes.arrayOf(PropTypes.string),
   }),
   layout: PropTypes.oneOf(["preview", "list"]),
+  page: PropTypes.string,
 };
 
 List.defaultProps = {
   queries: {},
   layout: "preview",
+  page: "1",
 };

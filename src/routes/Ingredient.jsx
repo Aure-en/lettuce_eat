@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import useFetch from "../hooks/useFetch";
-import Posts from "../components/categories/Category";
+import Posts from "../components/categories/Posts";
 
 function Ingredient({ match }) {
   const { data, error } = useFetch(

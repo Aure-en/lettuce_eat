@@ -56,7 +56,7 @@ TextPreview.defaultProps = {
   column: -1,
 };
 
-const Item = styled.li`
+const Item = styled.article`
   position: relative;
   grid-row: ${(props) => 2 * props.row - 1} / span 3;
   grid-column: ${(props) =>

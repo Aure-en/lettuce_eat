@@ -25,9 +25,24 @@ function App() {
             <Switch>
               <Route exact path="/" component={Main} />
               <Route exact path="/categories" component={Categories} />
-              <Route path="/categories/:category" component={Category} />
-              <Route path="/ingredients/:ingredient" component={Ingredient} />
-              <Route exact path="/all" component={All} />
+              <Route
+                exact
+                path={["/categories/:category", "/categories/:category/:page"]}
+                component={Category}
+              />
+              <Route
+                exact
+                path={[
+                  "/ingredients/:ingredient",
+                  "/ingredients/:ingredient/:page",
+                ]}
+                component={Ingredient}
+              />
+              <Route
+                exact
+                path={["/recipes", "/recipes/:page"]}
+                component={All}
+              />
               <Route path="/posts/:postId" component={Post} />
               <Route component={NotFound} />
             </Switch>

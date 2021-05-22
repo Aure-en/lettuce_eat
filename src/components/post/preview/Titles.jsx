@@ -7,7 +7,7 @@ function Titles({ posts }) {
   return (
     <Ul>
       {posts.map((post) => (
-        <Li>
+        <Li key={post._id}>
           <StyledLink to={`/posts/${post._id}`}>{post.title}</StyledLink>
         </Li>
       ))}

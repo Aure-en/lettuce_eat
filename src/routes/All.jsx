@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import List from "../components/all/List";
 import Sidebar from "../components/all/Sidebar";
 
-function All() {
+function All({ match }) {
   const [layout, setLayout] = useState("preview");
   const [queries, setQueries] = useState({});
   return (
@@ -20,7 +21,7 @@ function All() {
           </p>
         </Header>
         <Content>
-          <List queries={queries} layout={layout} />
+          <List queries={queries} layout={layout} page={match.params.page} />
           <Sidebar
             setQueries={(update) => setQueries({ ...queries, ...update })}
             setLayout={(update) => setLayout(update)}
@@ -32,6 +33,14 @@ function All() {
 }
 
 export default All;
+
+All.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      page: PropTypes.string,
+    }),
+  }).isRequired,
+};
 
 const Wrapper = styled.div`
   display: flex;
