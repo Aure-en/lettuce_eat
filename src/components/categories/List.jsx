@@ -63,8 +63,15 @@ const Heading = styled.h2`
 
 const Ul = styled.ul`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   list-style-type: none;
+
+  @media all and (min-width: 400px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media all and (min-width: 550px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 const Li = styled.li`

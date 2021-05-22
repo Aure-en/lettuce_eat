@@ -12,7 +12,7 @@ function Main() {
       <Container>
         <About />
         <Latest />
-        <StyledLink to="/all">
+        <StyledLink to="/recipes">
           See More
           <ArrowRight />
         </StyledLink>

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import useFetch from "../../hooks/useFetch";
 import Preview from "../post/preview/Preview";
+import useFetch from "../../hooks/useFetch";
 
 function Latest() {
   const { data: posts, error } = useFetch(
@@ -15,7 +15,7 @@ function Latest() {
   if (posts) {
     return (
       <Container>
-        <Preview posts={posts} amount={3} />
+        <Preview posts={posts} />
       </Container>
     );
   }

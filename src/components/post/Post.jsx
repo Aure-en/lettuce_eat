@@ -24,22 +24,22 @@ function Post({ post }) {
       <div>
         <Informations>
           {post.prep_time && (
-            <div>
-              <Information>Prep Time:</Information>
+            <Information>
+              <Detail>Prep Time:</Detail>
               <span> {post.prep_time}</span>
-            </div>
+            </Information>
           )}
           {post.cook_time && (
-            <div>
-              <Information>Cook Time:</Information>
+            <Information>
+              <Detail>Cook Time:</Detail>
               <span> {post.cook_time}</span>
-            </div>
+            </Information>
           )}
           {post.serves && (
-            <div>
-              <Information>Serves:</Information>
+            <Information>
+              <Detail>Serves:</Detail>
               <span> {post.serves}</span>
-            </div>
+            </Information>
           )}
         </Informations>
         <Recipe>{redraft(JSON.parse(post.text), renderers)}</Recipe>
@@ -74,6 +74,7 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 1rem;
 `;
 
 const Heading = styled.h1`
@@ -96,11 +97,21 @@ const Informations = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   font-size: 0.875rem;
-  margin: 0 5rem;
   justify-items: center;
+  margin: 0 auto;
+
+  @media all and (min-width: 576px) {
+    width: 65%;
+  }
 `;
 
-const Information = styled.span`
+const Information = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Detail = styled.span`
   font-style: italic;
   text-decoration: underline;
 `;

@@ -56,8 +56,8 @@ function App() {
 export default App;
 
 const Container = styled.div`
-  border-left: 5rem solid ${(props) => props.theme.background_tertiary};
-  border-right: 5rem solid ${(props) => props.theme.background_secondary};
+  /* border-left: 5rem solid ${(props) => props.theme.background_tertiary};
+  border-right: 5rem solid ${(props) => props.theme.background_secondary}; */
   min-height: 100vh;
 `;
 

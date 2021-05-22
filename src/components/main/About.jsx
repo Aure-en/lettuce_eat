@@ -18,8 +18,10 @@ function About() {
         </p>
         <p>
           We take pride in only displaying a preview image, a list of{" "}
-          <Underline><em>ingredients</em></Underline> and a set of{" "}
-          <strong>instructions</strong>.
+          <Underline>
+            <em>ingredients</em>
+          </Underline>{" "}
+          and a set of <strong>instructions</strong>.
         </p>
         <p>
           There will <Underline>never</Underline> be any superfluous paragraph
@@ -99,16 +101,18 @@ const Subheading = styled.div`
   position: relative;
   font-size: 1.25rem;
   font-weight: 300;
-  left: 3rem;
-  top: -0.25rem;
   background: -webkit-linear-gradient(
     ${(props) => `${props.theme.gradient_primary} 15%,
     ${props.theme.gradient_secondary} 70%,
     ${props.theme.gradient_tertiary} 100%`}
   );
-  //#f7e6c7 15%, #9cd39a 70%, #6fbe66 100%
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media all and (min-width: 576px) {
+    left: 3rem;
+    top: -0.25rem;
+  }
 `;
 
 const Underline = styled.span`

@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import HoverPreview from "./HoverPreview";
 import TextPreview from "./TextPreview";
+import useWindowSize from "../../../hooks/useWindowSize";
 
-function Preview({ posts, amount }) {
+function Preview({ posts }) {
   const [organized, setOrganized] = useState();
 
   // Reorganize posts into several arrays to create the honeycomb effect.
-  // It would be nice to find a clean, CSS only solution.
   useEffect(() => {
     let even = true;
     const array = [];
@@ -23,11 +23,12 @@ function Preview({ posts, amount }) {
       even = !even;
     }
     setOrganized(array);
-  }, [posts]);
+  }, [posts, amount]);
 
   return (
     <Grid amount={amount}>
-      {organized && posts &&
+      {organized &&
+        posts &&
         posts.map((post) =>
           post.images.length > 0 ? (
             <HoverPreview
@@ -69,11 +70,6 @@ Preview.propTypes = {
       description: PropTypes.string,
     })
   ).isRequired,
-  amount: PropTypes.number,
-};
-
-Preview.defaultProps = {
-  amount: 3,
 };
 
 const Grid = styled.main`
@@ -82,7 +78,7 @@ const Grid = styled.main`
   margin: 0;
   padding: 0;
   grid-template-columns: repeat(${(props) => props.amount * 2}, 1fr);
-  grid-gap: 4.5rem 2rem;
+  grid-gap: ${(props) => (props.amount === 1 ? "1rem" : "4.5rem 2rem")};
   max-width: 900px;
-  width: 100vw;
+  width: 90vw;
 `;

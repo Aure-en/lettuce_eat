@@ -67,5 +67,5 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 900px;
-  width: 100vw;
+  width: 90vw;
 `;

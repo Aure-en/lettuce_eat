@@ -39,6 +39,7 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   max-width: 40rem;
+  margin: 0 2rem;
   width: 100vw;
 `;
 
