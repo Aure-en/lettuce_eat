@@ -38,21 +38,21 @@ function Filters({ send }) {
       <Heading>Filter Recipes</Heading>
       <small>Check the boxes below to narrow recipe search results.</small>
 
-      <Subheading>Recipe Types</Subheading>
       {categories && (
         <List
           select={(e) => handleChange(e, "category")}
           selected={selected.category}
           options={categories}
+          heading="Recipe Types"
         />
       )}
 
-      <Subheading>Ingredients</Subheading>
       {ingredients && (
         <List
           select={(e) => handleChange(e, "ingredient")}
           selected={selected.ingredient}
           options={ingredients}
+          heading="Ingredients"
         />
       )}
     </div>
@@ -68,10 +68,4 @@ Filters.propTypes = {
 const Heading = styled.div`
   font-size: 1.25rem;
   font-weight: 300;
-`;
-
-const Subheading = styled.div`
-  margin: 0.75rem 0;
-  text-transform: uppercase;
-  text-decoration: underline;
 `;

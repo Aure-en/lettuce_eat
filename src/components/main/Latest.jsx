@@ -31,4 +31,5 @@ const Container = styled.div`
   align-items: center;
   align-self: stretch;
   margin: 2rem 0;
+  width: 90vw;
 `;

@@ -1,28 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import check from "../../../assets/icons/check.svg";
 
-function List({ select, selected, options }) {
+// Icons
+import check from "../../../assets/icons/check.svg";
+import { ReactComponent as IconDown } from "../../../assets/icons/arrow-down.svg";
+
+function List({ select, selected, options, heading }) {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(true);
   return (
     <Container>
-      {options.map((option) => (
-        <Label
-          key={option._id}
-          htmlFor={option._id}
-          $checked={selected.includes(option._id)}
-        >
-          {option.name}
-          <Input
-            type="checkbox"
-            id={option._id}
-            name={option._id}
-            value={option._id}
+      <Subheading onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+        {heading}
+        <IconDown />
+      </Subheading>
+      {isDropdownOpen &&
+        options.map((option) => (
+          <Label
+            key={option._id}
+            htmlFor={option._id}
             $checked={selected.includes(option._id)}
-            onChange={select}
-          />
-        </Label>
-      ))}
+          >
+            {option.name}
+            <Input
+              type="checkbox"
+              id={option._id}
+              name={option._id}
+              value={option._id}
+              $checked={selected.includes(option._id)}
+              onChange={select}
+            />
+          </Label>
+        ))}
     </Container>
   );
 }
@@ -45,6 +54,14 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
+const Subheading = styled.button`
+  display: flex;
+  justify-content: space-between;
+  margin: 0.75rem 0;
+  text-transform: uppercase;
+  text-decoration: underline;
+`;
+
 const Label = styled.label`
   position: relative;
   cursor: pointer;
@@ -56,12 +73,12 @@ const Label = styled.label`
     height: 10px;
     border: 1px solid ${(props) => props.theme.text_silent};
     border-radius: 50%;
-    margin: 0 0.5rem 0 1rem;
+    margin: 0 0.75rem 0 1.25rem;
   }
 
   &:after {
     position: absolute;
-    left: calc(0.75rem - 1px);
+    left: 1rem;
     top: -2px;
     content: ${(props) => props.$checked && `url(${check})`};
   }

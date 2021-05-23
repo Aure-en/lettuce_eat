@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import Preview from "../post/preview/Preview";
 import Titles from "../post/preview/Titles";
 import Pagination from "../shared/Pagination";
@@ -45,7 +46,7 @@ function List({ queries, layout, page }) {
   }
 
   return (
-    <div>
+    <Container>
       {posts &&
         (layout === "preview" ? (
           <Preview posts={posts} hover={false} />
@@ -60,7 +61,7 @@ function List({ queries, layout, page }) {
           url="/recipes"
         />
       )}
-    </div>
+    </Container>
   );
 }
 
@@ -82,3 +83,9 @@ List.defaultProps = {
   layout: "preview",
   page: "1",
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

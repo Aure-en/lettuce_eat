@@ -17,7 +17,7 @@ function Search({ send }) {
     <>
       <Heading>Search Recipe</Heading>
       <Form onSubmit={onSubmit}>
-        <label htmlFor="search">
+        <Label htmlFor="search">
           <Input
             type="text"
             name="search"
@@ -25,7 +25,7 @@ function Search({ send }) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-        </label>
+        </Label>
         <Button type="submit" aria-label="Search">
           <SearchIcon />
         </Button>
@@ -50,12 +50,17 @@ const Heading = styled.div`
   font-weight: 300;
 `;
 
+const Label = styled.label`
+  min-width: 0;
+`;
+
 const Input = styled.input`
   border: none;
   border-left: 4px solid ${(props) => props.theme.accent};
   padding: 0.5rem;
   background: ${(props) => props.theme.text_preview_bg};
   height: 100%;
+  max-width: 100%;
 `;
 
 const Button = styled.button`

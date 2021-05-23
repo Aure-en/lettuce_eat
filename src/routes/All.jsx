@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import List from "../components/all/List";
-import Sidebar from "../components/all/Sidebar";
+import Sidebar from "../components/all/sidebar/Sidebar";
+import DropdownSidebar from "../components/all/sidebar/Dropdown";
 
 function All({ match }) {
   const [layout, setLayout] = useState("preview");
   const [queries, setQueries] = useState({});
+
   return (
     <Wrapper>
       <Container>
@@ -22,10 +24,19 @@ function All({ match }) {
         </Header>
         <Content>
           <List queries={queries} layout={layout} page={match.params.page} />
-          <Sidebar
-            setQueries={(update) => setQueries({ ...queries, ...update })}
-            setLayout={(update) => setLayout(update)}
-          />
+
+          <Desktop>
+            <Sidebar
+              setQueries={(update) => setQueries({ ...queries, ...update })}
+              setLayout={(update) => setLayout(update)}
+            />
+          </Desktop>
+          <Mobile>
+            <DropdownSidebar
+              setQueries={(update) => setQueries({ ...queries, ...update })}
+              setLayout={(update) => setLayout(update)}
+            />
+          </Mobile>
         </Content>
       </Container>
     </Wrapper>
@@ -52,7 +63,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
+  padding: 0 0.5rem;
+  width: 90vw;
 `;
 
 const Header = styled.header`
@@ -87,10 +99,31 @@ const Heading = styled.h1`
 `;
 
 const Content = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column-reverse;
   margin: 2rem 0;
-  grid-template-columns: 1fr 12.5rem;
-  grid-gap: 2rem;
   width: 100%;
-  align-items: start;
+
+  @media all and (min-width: 900px) {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+`;
+
+const Desktop = styled.div`
+  display: none;
+
+  @media all and (min-width: 900px) {
+    display: block;
+  }
+`;
+
+const Mobile = styled.div`
+  display: block;
+
+  @media all and (min-width: 900px) {
+    display: none;
+  }
 `;

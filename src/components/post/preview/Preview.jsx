@@ -107,7 +107,7 @@ const Grid = styled.main`
   margin: 0;
   padding: 0;
   max-width: 900px;
-  width: 90vw;
+  width: 100%;
   grid-template-columns: repeat(2, 1fr);
 
   @media all and (min-width: 450px) and (max-width: 599px) {

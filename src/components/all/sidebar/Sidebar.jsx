@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Search from "../shared/Search";
-import Filters from "../shared/filters/Filters";
-import Layout from "../shared/Layout";
-import Sort from "../shared/Sort";
+import Search from "../../shared/Search";
+import Filters from "../../shared/filters/Filters";
+import Layout from "../../shared/Layout";
+import Sort from "../../shared/Sort";
 
 function Sidebar({ setQueries, setLayout }) {
   return (
@@ -28,6 +28,8 @@ const Container = styled.aside`
   display: flex;
   flex-direction: column;
   justify-self: end;
+  max-width: 12.5rem;
+
   & > * {
     margin: 0.5rem 0;
   }
