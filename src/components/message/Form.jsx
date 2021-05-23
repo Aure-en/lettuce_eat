@@ -28,7 +28,10 @@ function Form() {
       if (!values[key]) {
         hasErrors = true;
         setErrors((prev) => {
-          return { ...prev, [key]: `${key} must be specified.` };
+          return {
+            ...prev,
+            [key]: `${key[0].toUpperCase() + key.slice(1)} must be specified.`,
+          };
         });
       }
     });
@@ -36,7 +39,7 @@ function Form() {
     if (hasErrors) return;
 
     // Send the message
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/messages`, {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/message`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +47,8 @@ function Form() {
       body: JSON.stringify(values),
     });
 
-    if (res.success) {
+    const json = await res.json();
+    if (json.success) {
       setMessage("Your message has been sent.");
     }
   };
@@ -52,7 +56,7 @@ function Form() {
   return (
     <Container onSubmit={handleSubmit}>
       <Field>
-        <label htmlFor="name">
+        <Label htmlFor="name">
           <Input
             type="text"
             name="name"
@@ -61,12 +65,12 @@ function Form() {
             onChange={handleChange}
             placeholder="Name"
           />
-        </label>
+        </Label>
         {errors.name && <Error>{errors.name}</Error>}
       </Field>
 
       <Field>
-        <label htmlFor="email">
+        <Label htmlFor="email">
           <Input
             type="email"
             name="email"
@@ -75,12 +79,12 @@ function Form() {
             onChange={handleChange}
             placeholder="Email"
           />
-        </label>
-        {errors.name && <Error>{errors.name}</Error>}
+        </Label>
+        {errors.email && <Error>{errors.email}</Error>}
       </Field>
 
       <Field>
-        <label htmlFor="message">
+        <Label htmlFor="message">
           <Textarea
             name="message"
             id="message"
@@ -88,8 +92,8 @@ function Form() {
             onChange={handleChange}
             placeholder="Message"
           />
-        </label>
-        {errors.name && <Error>{errors.name}</Error>}
+        </Label>
+        {errors.message && <Error>{errors.message}</Error>}
       </Field>
 
       <Button type="submit">Send Message</Button>
@@ -100,16 +104,57 @@ function Form() {
 
 export default Form;
 
-const Container = styled.form``;
+const Container = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
 
-const Field = styled.div``;
+const Field = styled.div`
+  margin: 1rem 0;
+`;
 
-const Message = styled.div``;
+const Message = styled.small`
+  align-self: center;
+`;
 
-const Error = styled(Message)``;
+const Error = styled.small`
+  color: ${(props) => props.theme.error};
+`;
 
-const Input = styled.input``;
+const Label = styled.label`
+  position: relative;
 
-const Textarea = styled(TextareaAutosize)``;
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -0.25rem;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      to left,
+      ${(props) =>
+        `${props.theme.gradient_primary} 0%, ${props.theme.gradient_secondary} 100%`}
+    );
+  }
+`;
 
-const Button = styled.button``;
+const Input = styled.input`
+  border: none;
+  width: 100%;
+  padding: 0.25rem 0;
+`;
+
+const Textarea = styled(TextareaAutosize)`
+  border: none;
+  width: 100%;
+`;
+
+const Button = styled.button`
+  align-self: center;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  background: ${(props) => props.theme.accent};
+  color: ${(props) => props.theme.text_tertiary};
+  text-transform: uppercase;
+`;

@@ -24,6 +24,7 @@ const colors = {
   gradient_tertiary: "rgb(95, 150, 89)",
 
   accent: "rgb(154, 197, 162)",
+  error: "rgb(171, 71, 71)",
 };
 
 export default colors;

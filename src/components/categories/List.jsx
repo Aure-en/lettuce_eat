@@ -45,7 +45,7 @@ const Header = styled.div`
     position: absolute;
     bottom: 1rem;
     right: 0;
-    width: calc(100%);
+    width: 100%;
     height: 1px;
     background: linear-gradient(
       to left,
