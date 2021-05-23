@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-function HoverPreview({ post, row, column }) {
+function HoverPreview({ post }) {
   const [hovered, setHovered] = useState(false);
   return (
-    <Item row={row} column={column}>
+    <Item>
       <Content
         background={post.images[0]}
         onMouseEnter={() => setHovered(true)}
@@ -40,20 +40,12 @@ HoverPreview.propTypes = {
       })
     ),
   }).isRequired,
-  row: PropTypes.number,
-  column: PropTypes.number,
-};
-
-HoverPreview.defaultProps = {
-  row: -1,
-  column: -1,
 };
 
 const Item = styled.article`
   position: relative;
-  grid-row: ${(props) => 2 * props.row - 1} / span 3;
-  grid-column: ${(props) =>
-      props.row % 2 === 0 ? 2 * props.column : 2 * props.column - 1} / span 2;
+  grid-column-end: span 2;
+  grid-row-end: span 3;
   height: 0;
   padding-bottom: 115%; // Aspect ratio
 `;

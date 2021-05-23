@@ -48,7 +48,7 @@ function List({ queries, layout, page }) {
     <div>
       {posts &&
         (layout === "preview" ? (
-          <Preview posts={posts} />
+          <Preview posts={posts} hover={false} />
         ) : (
           <Titles posts={posts} />
         ))}

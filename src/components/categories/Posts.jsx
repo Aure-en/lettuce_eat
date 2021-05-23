@@ -57,10 +57,20 @@ Posts.propTypes = {
     name: PropTypes.string,
   }).isRequired,
   page: PropTypes.string,
+  layout: PropTypes.string,
+  sort: PropTypes.shape({
+    sort_by: PropTypes.string,
+    order: PropTypes.string,
+  }),
 };
 
 Posts.defaultProps = {
   page: "1",
+  layout: "preview",
+  sort: {
+    sort_by: "date",
+    order: "desc",
+  },
 };
 
 const Container = styled.div`

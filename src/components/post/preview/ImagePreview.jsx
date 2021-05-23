@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-function ImagePreview({ post, row, column }) {
+function ImagePreview({ post }) {
   return (
-    <Item key={post._id} row={row} column={column}>
+    <Item key={post._id}>
       <Link to={`/posts/${post._id}`}>
         <Content background={post.images[0]}>
           <Name>{post.title}</Name>
@@ -31,20 +31,12 @@ ImagePreview.propTypes = {
       })
     ),
   }).isRequired,
-  row: PropTypes.number,
-  column: PropTypes.number,
-};
-
-ImagePreview.defaultProps = {
-  row: -1,
-  column: -1,
 };
 
 const Item = styled.article`
   position: relative;
-  grid-row: ${(props) => 2 * props.row - 1} / span 3;
-  grid-column: ${(props) =>
-      props.row % 2 === 0 ? 2 * props.column : 2 * props.column - 1} / span 2;
+  grid-column-end: span 2;
+  grid-row-end: span 3;
   height: 0;
   padding-bottom: 110%; // Aspect ratio
 `;

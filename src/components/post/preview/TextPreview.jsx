@@ -7,13 +7,11 @@ import { Link } from "react-router-dom";
 import { ReactComponent as NotebookIcon } from "../../../assets/icons/preview/notebook.svg";
 import { ReactComponent as ArrowIcon } from "../../../assets/icons/preview/arrow-right.svg";
 
-function TextPreview({ post, row, column }) {
+function TextPreview({ post }) {
   const [hover, setHovered] = useState(false);
 
   return (
     <Item
-      row={row}
-      column={column}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -47,21 +45,13 @@ TextPreview.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
   }).isRequired,
-  row: PropTypes.number,
-  column: PropTypes.number,
-};
-
-TextPreview.defaultProps = {
-  row: -1,
-  column: -1,
 };
 
 const Item = styled.article`
   position: relative;
-  grid-row: ${(props) => 2 * props.row - 1} / span 3;
-  grid-column: ${(props) =>
-      props.row % 2 === 0 ? 2 * props.column : 2 * props.column - 1} / span 2;
   height: 0;
+  grid-column-end: span 2;
+  grid-row-end: span 3;
   padding-bottom: 115%; // Aspect ratio
 `;
 
