@@ -10,6 +10,7 @@ import Ingredient from "./routes/Ingredient";
 import Main from "./routes/Main";
 import NotFound from "./routes/NotFound";
 import Post from "./routes/Post";
+import Message from "./routes/Message";
 import theme from "./styles/theme";
 import "./styles/textEditor.css";
 import "normalize.css";
@@ -43,7 +44,8 @@ function App() {
                 path={["/recipes", "/recipes/:page"]}
                 component={All}
               />
-              <Route path="/posts/:postId" component={Post} />
+              <Route exact path="/posts/:postId" component={Post} />
+              <Route exact path="/message" component={Message} />
               <Route component={NotFound} />
             </Switch>
           </Content>
