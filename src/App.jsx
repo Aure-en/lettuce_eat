@@ -20,7 +20,7 @@ import "normalize.css";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/lettuce_eat">
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Container>
