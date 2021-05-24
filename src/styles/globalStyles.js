@@ -18,8 +18,6 @@ const GlobalStyles = createGlobalStyle`
   body * {
     font-family: 'Source Sans Pro', sans-serif;
     line-height: 1.25rem;
-    font-weight: 300;
-    font-size: 0.9375rem;
   }
 
   strong {
