@@ -27,7 +27,6 @@ Sidebar.propTypes = {
 const Container = styled.aside`
   display: flex;
   flex-direction: column;
-  justify-self: end;
   max-width: 12.5rem;
 
   & > * {

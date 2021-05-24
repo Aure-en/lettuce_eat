@@ -110,7 +110,7 @@ const Container = styled.form`
 `;
 
 const Field = styled.div`
-  margin: 1rem 0;
+  margin: 1.5rem 0;
 `;
 
 const Message = styled.small`
@@ -143,11 +143,13 @@ const Input = styled.input`
   border: none;
   width: 100%;
   padding: 0.25rem 0;
+  background: transparent;
 `;
 
 const Textarea = styled(TextareaAutosize)`
   border: none;
   width: 100%;
+  background: transparent;
 `;
 
 const Button = styled.button`
@@ -157,4 +159,9 @@ const Button = styled.button`
   background: ${(props) => props.theme.accent};
   color: ${(props) => props.theme.text_tertiary};
   text-transform: uppercase;
+  border: 2px solid transparent;
+
+  &:hover {
+    border: 2px inset ${(props) => props.theme.text_preview_accent};
+  }
 `;

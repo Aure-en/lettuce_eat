@@ -10,36 +10,34 @@ function All({ match }) {
   const [queries, setQueries] = useState({});
 
   return (
-    <Wrapper>
-      <Container>
-        <Header>
-          <Heading>Recipes</Heading>
-          <p>
-            Welcome to every single Lettuce Eat recipe! Maybe you’re not even
-            sure what exactly you’re looking for and you just wanna keep on
-            scrollin’ until inspiration strikes, or looking through hundreds of
-            beautiful pictures of food is a soothing self-care practice.
-            Whatever the reason, you’re here! And here’s the whole shebang.
-          </p>
-        </Header>
-        <Content>
-          <List queries={queries} layout={layout} page={match.params.page} />
+    <Container>
+      <Header>
+        <Heading>Recipes</Heading>
+        <p>
+          Welcome to every single Lettuce Eat recipe! Maybe you’re not even sure
+          what exactly you’re looking for and you just wanna keep on scrollin’
+          until inspiration strikes, or looking through hundreds of beautiful
+          pictures of food is a soothing self-care practice. Whatever the
+          reason, you’re here! And here’s the whole shebang.
+        </p>
+      </Header>
+      <Content>
+        <List queries={queries} layout={layout} page={match.params.page} />
 
-          <Desktop>
-            <Sidebar
-              setQueries={(update) => setQueries({ ...queries, ...update })}
-              setLayout={(update) => setLayout(update)}
-            />
-          </Desktop>
-          <Mobile>
-            <DropdownSidebar
-              setQueries={(update) => setQueries({ ...queries, ...update })}
-              setLayout={(update) => setLayout(update)}
-            />
-          </Mobile>
-        </Content>
-      </Container>
-    </Wrapper>
+        <Desktop>
+          <Sidebar
+            setQueries={(update) => setQueries({ ...queries, ...update })}
+            setLayout={(update) => setLayout(update)}
+          />
+        </Desktop>
+        <Mobile>
+          <DropdownSidebar
+            setQueries={(update) => setQueries({ ...queries, ...update })}
+            setLayout={(update) => setLayout(update)}
+          />
+        </Mobile>
+      </Content>
+    </Container>
   );
 }
 
@@ -53,18 +51,13 @@ All.propTypes = {
   }).isRequired,
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-bottom: 2rem;
-`;
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0 0.5rem;
-  width: 90vw;
+  width: 100%;
+  margin-bottom: 2rem;
 `;
 
 const Header = styled.header`
@@ -103,6 +96,7 @@ const Content = styled.div`
   flex-direction: column-reverse;
   margin: 2rem 0;
   width: 100%;
+  max-width: 1200px;
 
   @media all and (min-width: 900px) {
     display: grid;

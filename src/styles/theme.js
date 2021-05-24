@@ -23,8 +23,16 @@ const colors = {
   gradient_secondary: "rgb(156, 211, 154)",
   gradient_tertiary: "rgb(95, 150, 89)",
 
+  subheading_bg: "rgb(255, 250, 233)",
+
   accent: "rgb(154, 197, 162)",
   error: "rgb(171, 71, 71)",
+
+  panel_left_icon: "rgb(89, 135, 112)",
+  panel_right_icon: "rgb(212, 180, 131)",
+  panel_left_bg: "rgb(233, 243, 227)",
+  panel_right_bg: "rgb(255, 250, 235)",
+  panel_border: "rgb(255, 255, 255)",
 };
 
 export default colors;

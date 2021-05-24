@@ -22,25 +22,23 @@ function Category({ match }) {
 
   if (data) {
     return (
-      <Wrapper>
-        <Container>
-          <Header>
-            <Heading>{data.name}</Heading>
-            <p>{data.description}</p>
-          </Header>
-          <Settings>
-            <Sort send={(update) => setSort(update)} />
-            <Layout send={(update) => setLayout(update)} />
-          </Settings>
-          <Posts
-            type="categories"
-            category={data}
-            page={match.params.page}
-            sort={sort}
-            layout={layout}
-          />
-        </Container>
-      </Wrapper>
+      <Container>
+        <Header>
+          <Heading>{data.name}</Heading>
+          <p>{data.description}</p>
+        </Header>
+        <Settings>
+          <Sort send={(update) => setSort(update)} />
+          <Layout send={(update) => setLayout(update)} />
+        </Settings>
+        <Posts
+          type="categories"
+          category={data}
+          page={match.params.page}
+          sort={sort}
+          layout={layout}
+        />
+      </Container>
     );
   }
 
@@ -58,17 +56,13 @@ Category.propTypes = {
   }).isRequired,
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-bottom: 2rem;
-`;
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 900px;
+  width: 100%;
+  margin-bottom: 2rem;
   padding: 0 0.5rem;
 `;
 

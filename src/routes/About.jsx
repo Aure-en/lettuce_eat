@@ -1,26 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import Form from "../components/message/Form";
+import Description from "../components/about/About";
 
-function Message() {
+function About() {
   return (
     <Container>
       <Header>
-        <Heading>Message</Heading>
-        <p>
-          Feel free to send us a message for any inquiry of suggestion. Whether
-          you need more precisions about a recipe or are simply looking to chat
-          about food, we would love to hear from you.
-        </p>
+        <Heading>About</Heading>
       </Header>
       <Content>
-        <Form />
+        <Description />
       </Content>
     </Container>
   );
 }
 
-export default Message;
+export default About;
 
 const Container = styled.div`
   display: flex;
@@ -52,7 +47,7 @@ const Heading = styled.h1`
     bottom: -2rem;
     left: 50%;
     transform: translateX(-50%);
-    width: 70%;
+    width: 150%;
     height: 3px;
     background: ${(props) => props.theme.gradient_primary};
     background: linear-gradient(

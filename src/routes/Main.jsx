@@ -8,32 +8,26 @@ import { ReactComponent as ArrowRight } from "../assets/icons/preview/arrow-righ
 
 function Main() {
   return (
-    <Wrapper>
-      <Container>
-        <About />
-        <Latest />
-        <StyledLink to="/recipes">
-          See More
-          <ArrowRight />
-        </StyledLink>
-      </Container>
-    </Wrapper>
+    <Container>
+      <About />
+      <Latest />
+      <StyledLink to="/recipes">
+        See More
+        <ArrowRight />
+      </StyledLink>
+    </Container>
   );
 }
 
 export default Main;
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-bottom: 2rem;
-`;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 900px;
+  width: 100%;
+  margin-bottom: 2rem;
 `;
 
 const StyledLink = styled(Link)`

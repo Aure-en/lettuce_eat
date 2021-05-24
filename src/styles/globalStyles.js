@@ -15,6 +15,13 @@ const GlobalStyles = createGlobalStyle`
     font-size: 0.9375rem;
   }
 
+  body * {
+    font-family: 'Source Sans Pro', sans-serif;
+    line-height: 1.25rem;
+    font-weight: 300;
+    font-size: 0.9375rem;
+  }
+
   strong {
     font-weight: bold;
   }

@@ -78,5 +78,5 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   max-width: 900px;
-  width: 90vw;
+  width: 100%;
 `;

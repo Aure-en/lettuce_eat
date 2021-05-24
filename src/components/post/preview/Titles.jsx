@@ -27,6 +27,7 @@ Titles.propTypes = {
 
 const Ul = styled.ul`
   list-style-type: none;
+  align-self: flex-start;
 `;
 
 const Li = styled.li`

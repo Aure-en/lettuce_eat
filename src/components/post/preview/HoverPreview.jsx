@@ -67,7 +67,9 @@ const Content = styled.div`
     100% 75%,
     100% 25%
   ); // Hexagon shape
-  background-image: ${(props) => props.background && `url(
+  background-image: ${(props) =>
+    props.background &&
+    `url(
     data:${props.background.contentType};base64,${Buffer.from(
       props.background.data
     ).toString("base64")}`});

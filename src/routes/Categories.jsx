@@ -12,35 +12,34 @@ function Categories() {
   );
 
   return (
-    <Wrapper>
-      <Container>
-        <Header>
-          <Heading>Categories</Heading>
-          <p>We’ve organized these <strong>recipes</strong> so you don't have to!</p>
-          <p>Whether you browse them by <Underline>meal type</Underline> or by <Underline>ingredient</Underline>, we're sure you'll find just what you are looking for.</p>
-        </Header>
-        {categories && (
-          <List title="recipes types" type="categories" data={categories} />
-        )}
-        {ingredients && (
-          <List title="ingredients" type="ingredients" data={ingredients} />
-        )}
-      </Container>
-    </Wrapper>
+    <Container>
+      <Header>
+        <Heading>Categories</Heading>
+        <p>
+          We’ve organized these <strong>recipes</strong> so you don't have to!
+        </p>
+        <p>
+          Whether you browse them by <Underline>meal type</Underline> or by{" "}
+          <Underline>ingredient</Underline>, we're sure you'll find just what
+          you are looking for.
+        </p>
+      </Header>
+      {categories && (
+        <List title="recipes types" type="categories" data={categories} />
+      )}
+      {ingredients && (
+        <List title="ingredients" type="ingredients" data={ingredients} />
+      )}
+    </Container>
   );
 }
 
 export default Categories;
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
 const Container = styled.div`
   max-width: 40rem;
-  margin: 0 2rem;
-  width: 100vw;
+  margin: 0 2rem 2rem 2rem;
+  width: 100%;
 `;
 
 const Header = styled.div`
