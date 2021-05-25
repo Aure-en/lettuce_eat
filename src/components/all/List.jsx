@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import Preview from "../post/preview/Preview";
 import Titles from "../post/preview/Titles";
 import Pagination from "../shared/Pagination";
@@ -10,7 +11,8 @@ function List({ queries, layout, page }) {
   const [limit, setLimit] = useState(10);
   const initial = `${process.env.REACT_APP_API_URL}/posts?page=${page}&limit=${limit}`;
   const [url, setUrl] = useState(initial);
-  const { data: posts, count } = useFetch(url);
+  const { data: posts, count, loading } = useFetch(url);
+  const history = useHistory();
 
   useEffect(() => {
     // Add queries to the url
@@ -39,7 +41,11 @@ function List({ queries, layout, page }) {
     layout === "preview" ? setLimit(10) : setLimit(100);
   }, [layout]);
 
-  if (posts && posts.length === 0) {
+  useEffect(() => {
+    history.push("/recipes");
+  }, [queries]);
+
+  if (!loading && posts && posts.length === 0) {
     return (
       <div>Sorry, there are no recipes fulfilling those conditions yet.</div>
     );

@@ -5,7 +5,7 @@ function About() {
   return (
     <Container>
       <Logo>
-        <Image src="https://previews.dropbox.com/p/thumb/ABIVGhL5m2gTerRaNrTgB5OdcQvDLDd-zDSDVnWEl5LCcNbgoTGlXe243uGq-Qf-cxsBzPI9bSIsGQkGZmIErgN8u06838RqC3GH7BkywB0l29VrTFRpM-JLbxaXrbmFKnHGHE9BP14AAWAl09Q6gMMwVSIXNnudZMN_Y7wIoPzPri-xnADLM2jGmuFoL2cDp18exgZrBmredT5iG5hFhDFoZIOZZbuhl0Vi16A7O3w_6Sdv95nTP_9LfBOm9W3cnaOUc7eUCUzyYYAshPm4ynZ9R2PM1wXunVrvnEGnzlrZJactJm3NWi0sxOIK22KrbQ9osDsLOIs-6ggH0FWyKh9YtdBYi6Q7hffz--CmYvTRyw/p.jpeg?fv_content=true&size_mode=5" />
+        <Image src="https://www.dropbox.com/s/s3px837esg6dk9s/rsz_hermes-rivera-ozble_eg1mg-unsplash.jpg?raw=1" />
       </Logo>
       <div>
         <Title>

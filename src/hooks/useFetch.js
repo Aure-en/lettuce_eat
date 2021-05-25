@@ -14,12 +14,11 @@ function useFetch(url) {
       if (json.error) {
         setError(json.error);
         setCount(0);
-        setLoading(false);
       } else {
         setData(json);
         setCount(response.headers.get("count"));
-        setLoading(false);
       }
+      setLoading(false);
     })();
   }, [url]);
 
