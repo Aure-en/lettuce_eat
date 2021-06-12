@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Lettuce Eat
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Lettuce Eat - View site](https://aure-en.github.io/lettuce_eat/)
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+Lettuce Eat is a Food Blog made with MERN stack. It allows an user to share recipes. Readers might comment and send messages to the blogger. It is a project realized as The Odin Project's [Blog API Project](https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs/lessons/blog-api).
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Routing with React Router
+* Comments with nested replies
+* Blog posts with image, ingredients and instructions
+* Horizontal panels to see blogger informations and send messages
+* Posts sorting and filtering
+* Pagination with 10 posts preview per page
+* Responsive
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Preview
 
-### `npm test`
+<p float="left" align="middle">
+ <img src="https://firebasestorage.googleapis.com/v0/b/aurelie-nguyen.appspot.com/o/projects%2Flettuce_eat%2Flettuce1.png?alt=media&token=c8b3a7dc-5b71-4218-9086-e30a9183e402" alt="Home page" width="45%"/>
+  <img src="https://firebasestorage.googleapis.com/v0/b/aurelie-nguyen.appspot.com/o/projects%2Flettuce_eat%2Flettuce2.png?alt=media&token=16d77fda-e67e-4bcb-a768-141b1c8fbccf" alt="All recipes page" width="45%"/>
+</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p float="left" align="middle">
+ <img src="https://firebasestorage.googleapis.com/v0/b/aurelie-nguyen.appspot.com/o/projects%2Flettuce_eat%2Flettuce3.png?alt=media&token=1e87d086-2c11-47e8-9d3c-c09c378f82aa" alt="Categories page" width="45%"/>
+  <img src="https://firebasestorage.googleapis.com/v0/b/aurelie-nguyen.appspot.com/o/projects%2Flettuce_eat%2Flettuce4.png?alt=media&token=b6ea609b-63e8-4fec-ad17-0ac27f913301" alt="Blog post" width="45%"/>
+</p>
