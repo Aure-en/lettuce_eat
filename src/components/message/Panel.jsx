@@ -80,7 +80,7 @@ const Heading = styled.div`
   font-style: italic;
   padding: 0.25rem 1.25rem 0.25rem 1rem;
   border-left: 3px solid ${(props) => props.theme.input_border};
-  background: ${(props) => props.theme.panel_left_bg};
+  background: ${(props) => props.theme.background_primary};
   color: ${(props) => props.theme.text_secondary};
 `;
 

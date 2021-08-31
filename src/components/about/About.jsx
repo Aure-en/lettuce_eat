@@ -5,7 +5,7 @@ function About() {
   return (
     <Container>
       <section>
-        <Subheading>Welcome to Lettuce Eat</Subheading>
+        <Subheading>Welcome to Berrycious</Subheading>
         <p>
           We created this blog to celebrate how nourishing, fun, and delicious
           cooking with seasonal, fresh ingredients can be. We hope that the

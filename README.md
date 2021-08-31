@@ -1,10 +1,10 @@
-# Lettuce Eat
+# Berrycious
 
-[Lettuce Eat - View site](https://aure-en.github.io/lettuce_eat/)
+[Berrycious - View site](https://aure-en.github.io/lettuce_eat/)
 
 ## Description
 
-Lettuce Eat is a Food Blog made with MERN stack. It allows an user to share recipes. Readers might comment and send messages to the blogger. It is a project realized as The Odin Project's [Blog API Project](https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs/lessons/blog-api).
+Berrycious is a Food Blog made with MERN stack. It allows an user to share recipes. Readers might comment and send messages to the blogger. It is a project realized as The Odin Project's [Blog API Project](https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs/lessons/blog-api).
 
 ## Features
 

@@ -14,7 +14,7 @@ function All({ match }) {
       <Header>
         <Heading>Recipes</Heading>
         <p>
-          Welcome to every single Lettuce Eat recipe! Maybe you’re not even sure
+          Welcome to every single Berrycious recipe! Maybe you’re not even sure
           what exactly you’re looking for and you just wanna keep on scrollin’
           until inspiration strikes, or looking through hundreds of beautiful
           pictures of food is a soothing self-care practice. Whatever the

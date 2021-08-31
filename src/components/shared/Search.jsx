@@ -58,7 +58,7 @@ const Input = styled.input`
   border: none;
   border-left: 4px solid ${(props) => props.theme.accent};
   padding: 0.5rem;
-  background: ${(props) => props.theme.text_preview_bg};
+  background: ${(props) => props.theme.background_secondary};
   height: 100%;
   max-width: 100%;
 `;

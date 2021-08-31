@@ -6,31 +6,31 @@ const colors = {
 
   background_primary: "rgb(255, 255, 255)",
   background_secondary: "rgb(255, 245, 213)",
-  background_tertiary: "rgb(213, 234, 204)",
-  background_hover: "rgb(242, 249, 239)",
+  background_tertiary: "rgb(173, 96, 102)",
+  background_hover: "rgb(249, 239, 239)",
 
   text_link: "rgb(255, 255, 255)",
-  input_border: "rgb(154, 197, 162)",
+  input_border: "rgb(173, 96, 102)",
 
   overlay: "rgb(255, 255, 255)",
-  overlay_link: "rgba(148, 195, 109, 0.85)",
+  overlay_link: "rgba(184, 118, 118, 0.85)",
 
-  text_preview_bg: "rgb(255, 247, 220)",
-  text_preview_accent: "rgb(201, 230, 190)",
-  text_preview_title: "rgb(215, 238, 206)",
+  text_preview_bg: "rgb(195, 126, 131)",
+  text_preview_accent: "rgb(212, 163, 167)",
+  text_preview_title: "rgb(219, 173, 173)",
 
   gradient_primary: "rgb(247, 230, 199)",
-  gradient_secondary: "rgb(156, 211, 154)",
-  gradient_tertiary: "rgb(95, 150, 89)",
+  gradient_secondary: "rgb(211, 154, 154)",
+  gradient_tertiary: "rgb(122, 61, 61)",
 
   subheading_bg: "rgb(255, 250, 233)",
 
-  accent: "rgb(154, 197, 162)",
+  accent: "rgb(195, 126, 131)",
   error: "rgb(171, 71, 71)",
 
-  panel_left_icon: "rgb(89, 135, 112)",
+  panel_left_icon: "rgb(255, 255, 255)",
   panel_right_icon: "rgb(212, 180, 131)",
-  panel_left_bg: "rgb(233, 243, 227)",
+  panel_left_bg: "rgb(234, 212, 212)",
   panel_right_bg: "rgb(255, 250, 235)",
   panel_border: "rgb(255, 255, 255)",
 };

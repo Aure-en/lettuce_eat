@@ -71,7 +71,7 @@ const Content = styled.div`
   ); // Hexagon shape
   display: flex;
   justify-content: center;
-  background: ${(props) => props.theme.text_preview_bg};
+  background: ${(props) => props.theme.background_secondary};
 
   // Fade
   &:after {
@@ -82,7 +82,7 @@ const Content = styled.div`
     content: "";
     background: linear-gradient(
       to top,
-      ${(props) => props.theme.text_preview_bg} 20%,
+      ${(props) => props.theme.background_primary} 20%,
       transparent 80%
     );
   }

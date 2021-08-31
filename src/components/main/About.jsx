@@ -9,7 +9,7 @@ function About() {
       </Logo>
       <div>
         <Title>
-          <Heading>Lettuce Eat</Heading>
+          <Heading>Berrycious</Heading>
           <Subheading>Recipes, and recipes only.</Subheading>
         </Title>
         <p>

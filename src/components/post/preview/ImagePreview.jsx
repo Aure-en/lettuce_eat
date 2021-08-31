@@ -62,7 +62,7 @@ const Content = styled.div`
     props.background &&
     `url(
     data:${props.background.contentType};base64,${Buffer.from(
-      props.background.data
+      props.background.thumbnail || props.background.data
     ).toString("base64")}`});
   background-position: center;
   background-size: cover;
