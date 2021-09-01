@@ -18,7 +18,7 @@ Berrycious is a Food Blog made with MERN stack. It allows an user to share recip
 * Responsive
 
 ## Preview
-
+https://user-images.githubusercontent.com/68861848/131728905-63e95741-4095-4efb-8683-6304c49723a5.mp4
 
 ## Installation
 
