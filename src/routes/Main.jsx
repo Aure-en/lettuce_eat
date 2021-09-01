@@ -35,15 +35,20 @@ const StyledLink = styled(Link)`
   align-items: center;
   align-self: flex-end;
   padding: 0.5rem 1.25rem;
-  color: ${(props) => props.theme.text_link};
-  background: ${(props) => props.theme.overlay_link};
+  color: ${(props) => props.theme.text_tertiary};
+  background: ${(props) => props.theme.background_tertiary};
   z-index: 5;
   text-transform: uppercase;
   max-width: 70%;
   text-align: center;
   font-size: 1rem;
+  border: 2px inset transparent;
 
   & > svg {
     margin-left: 0.25rem;
+  }
+
+  &:hover {
+    border: 2px inset ${(props) => props.theme.text_preview_accent};
   }
 `;

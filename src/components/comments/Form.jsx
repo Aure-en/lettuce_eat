@@ -151,10 +151,20 @@ const Input = styled.input`
 const Button = styled.button`
   align-self: flex-end;
   text-transform: uppercase;
-  background: ${(props) => props.theme.input_border};
+  background: ${(props) =>
+    props.disabled
+      ? props.theme.panel_left_bg
+      : props.theme.background_tertiary};
   border: none;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  color: ${(props) => props.theme.text_link};
+  color: ${(props) => props.theme.text_tertiary};
   cursor: pointer;
+  border: 2px inset transparent;
+
+  &:hover {
+    border: 2px inset
+      ${(props) =>
+        props.disabled ? "transparent" : props.theme.text_preview_accent};
+  }
 `;

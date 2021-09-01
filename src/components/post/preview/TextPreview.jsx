@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Transition } from "react-transition-group";
 
 // Icons
 import { ReactComponent as NotebookIcon } from "../../../assets/icons/preview/notebook.svg";
@@ -22,15 +23,19 @@ function TextPreview({ post }) {
               <NotebookIcon />
             </Hexagon>
           </Decoration>
+
           <Text>
             <Title>{post.title}</Title>
             <p>{post.description}</p>
           </Text>
-          {hover && (
-            <HexagonArrow>
-              <ArrowIcon />
-            </HexagonArrow>
-          )}
+
+          <Transition in={hover} timeout={0}>
+            {(state) => (
+              <HexagonArrow $state={state}>
+                <ArrowIcon />
+              </HexagonArrow>
+            )}
+          </Transition>
         </Content>
       </Link>
     </Item>
@@ -110,6 +115,11 @@ const Hexagon = styled.span`
 const HexagonArrow = styled(Hexagon)`
   position: absolute;
   bottom: 7.5%;
+  transform: translateY(
+    ${(props) => (props.$state === "entered" ? "0" : "25%")}
+  );
+  opacity: ${(props) => (props.$state === "entered" ? "1" : "0")};
+  transition: transform 0.2s ease-out, opacity 0.3s linear;
 `;
 
 const line = `
