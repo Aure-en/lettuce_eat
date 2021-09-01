@@ -9,15 +9,15 @@ const colors = {
   background_tertiary: "rgb(173, 96, 102)",
   background_hover: "rgb(249, 239, 239)",
 
-  text_link: "rgb(255, 255, 255)",
+  text_link: "rgb(142, 64, 70)",
   input_border: "rgb(173, 96, 102)",
 
   overlay: "rgb(255, 255, 255)",
-  overlay_link: "rgba(184, 118, 118, 0.85)",
+  overlay_link: "rgba(255, 245, 213, 0.8)",
 
   text_preview_bg: "rgb(195, 126, 131)",
   text_preview_accent: "rgb(212, 163, 167)",
-  text_preview_title: "rgb(219, 173, 173)",
+  text_preview_title: "rgba(219, 173, 173)",
 
   gradient_primary: "rgb(247, 230, 199)",
   gradient_secondary: "rgb(211, 154, 154)",

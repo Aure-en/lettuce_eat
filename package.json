@@ -1,8 +1,8 @@
 {
-  "name": "lettuce_eat_client",
+  "name": "berrycious",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://aure-en.github.io/lettuce_eat",
+  "homepage": "http://aure-en.github.io/berrycious",
   "dependencies": {
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",

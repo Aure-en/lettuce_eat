@@ -15,15 +15,13 @@ function Ingredient({ match }) {
 
   if (data) {
     return (
-      <Wrapper>
-        <Container>
-          <Header>
-            <Heading>{data.name}</Heading>
-            {data.description && <p>{data.description}</p>}
-          </Header>
-          <Posts type="ingredients" categoryId={data._id} />
-        </Container>
-      </Wrapper>
+      <Container>
+        <Header>
+          <Heading>{data.name}</Heading>
+          {data.description && <p>{data.description}</p>}
+        </Header>
+        <Posts type="ingredients" category={data} />
+      </Container>
     );
   }
 
@@ -40,17 +38,14 @@ Ingredient.propTypes = {
   }).isRequired,
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-bottom: 2rem;
-`;
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 900px;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 0 0.5rem;
 `;
 
 const Header = styled.header`

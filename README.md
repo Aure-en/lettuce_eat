@@ -1,6 +1,6 @@
 # Berrycious
 
-[Berrycious - View site](https://aure-en.github.io/lettuce_eat/)
+[Berrycious - View site](https://aure-en.github.io/berrycious/)
 
 ## Description
 
