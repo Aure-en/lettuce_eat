@@ -37,7 +37,7 @@ const Li = styled.li`
     position: relative;
     bottom: 2px;
     content: "⬧";
-    color: ${(props) => props.theme.overlay_link};
+    color: ${(props) => props.theme.background_tertiary};
     margin-right: 1rem;
   }
 `;

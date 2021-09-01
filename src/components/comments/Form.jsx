@@ -15,6 +15,7 @@ function Form({ postId, parentId, comment }) {
     username: "",
     content: "",
   });
+  const [message, setMessage] = useState("");
 
   const handleChange = (name, value) => {
     setValues({ ...values, [name]: value });
@@ -26,6 +27,7 @@ function Form({ postId, parentId, comment }) {
       username: "",
       content: "",
     });
+    setMessage("");
 
     // Client-side validation
     let hasErrors = false;
@@ -71,6 +73,13 @@ function Form({ postId, parentId, comment }) {
           body: JSON.stringify(values),
         }
       );
+      const json = await res.json();
+
+      if (!json.error) {
+        setMessage(comment ? "Comment updated." : "Comment posted.");
+      } else {
+        setMessage("Sorry, there was an error.");
+      }
     }
   };
 
@@ -104,6 +113,7 @@ function Form({ postId, parentId, comment }) {
       <Button type="submit" disabled={!values.username || !values.content}>
         Comment
       </Button>
+      {message && <small>{message}</small>}
     </Container>
   );
 }
