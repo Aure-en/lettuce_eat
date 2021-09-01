@@ -5,7 +5,7 @@ function About() {
   return (
     <Container>
       <Logo>
-        <Image src="https://www.dropbox.com/s/s3px837esg6dk9s/rsz_hermes-rivera-ozble_eg1mg-unsplash.jpg?raw=1" />
+        <Image src="https://firebasestorage.googleapis.com/v0/b/aurelie-nguyen.appspot.com/o/projects%2Fberrycious%2Ferdbeer-kaesesahne-torte-720x1008.webp?alt=media&token=9acc79a2-73eb-41a5-a1e8-ece0d5594e01" />
       </Logo>
       <div>
         <Title>

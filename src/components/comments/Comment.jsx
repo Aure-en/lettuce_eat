@@ -14,7 +14,7 @@ function Comment({ postId, commentId }) {
     <>
       {comment && (
         <Container>
-          <Username>{comment.username}</Username>
+          <strong>{comment.username}</strong>
           <p>{comment.content}</p>
           <Button type="button" onClick={() => setIsReplying(!isReplying)}>
             {isReplying ? "Cancel" : "Reply"}
@@ -53,10 +53,6 @@ const Container = styled.li`
     left: -1rem;
     opacity: 0.5;
   }
-`;
-
-const Username = styled.span`
-  font-weight: 400;
 `;
 
 const Button = styled.button`
