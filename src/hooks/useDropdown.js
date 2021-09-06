@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 function useDropdown(ref, initial, closeOnClickOutside = true) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [current, setCurrent] = useState(initial || "");
+  const [current, setCurrent] = useState(initial || '');
 
   const closeDropdown = () => {
     setIsDropdownOpen(false);
@@ -24,8 +24,8 @@ function useDropdown(ref, initial, closeOnClickOutside = true) {
   useEffect(() => {
     if (!closeOnClickOutside) return;
     if (!isDropdownOpen) return;
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isDropdownOpen]);
 
   return {

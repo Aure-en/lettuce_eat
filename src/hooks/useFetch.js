@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 function useFetch(url) {
   const [data, setData] = useState();
@@ -16,7 +16,7 @@ function useFetch(url) {
         setCount(0);
       } else {
         setData(json);
-        setCount(response.headers.get("count"));
+        setCount(response.headers.get('count'));
       }
       setLoading(false);
     })();
