@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-function useFetch(url) {
-  const [data, setData] = useState();
-  const [count, setCount] = useState(0);
-  const [error, setError] = useState();
-  const [loading, setLoading] = useState(false);
+function useFetch<T>(url: string) {
+  const [data, setData] = useState<T | null>();
+  const [count, setCount] = useState<number>(0);
+  const [error, setError] = useState<string | null>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     (async () => {
@@ -16,7 +16,7 @@ function useFetch(url) {
         setCount(0);
       } else {
         setData(json);
-        setCount(response.headers.get('count'));
+        setCount(parseInt(response.headers.get('count') || '', 10));
       }
       setLoading(false);
     })();

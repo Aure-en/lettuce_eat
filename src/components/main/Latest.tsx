@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Preview from '../post/preview/Preview';
 import useFetch from '../../hooks/useFetch';
+import Post from '../../types/Post';
 
 function Latest() {
-  const { data: posts, error } = useFetch(
+  const { data: posts, error } = useFetch<Post[]>(
     `${process.env.REACT_APP_API_URL}/posts?page=1&limit=10`,
   );
 

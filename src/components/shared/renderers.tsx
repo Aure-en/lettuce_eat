@@ -1,70 +1,81 @@
 import React from 'react';
 import styled from 'styled-components';
 import uniqid from 'uniqid';
-import { Link } from 'react-router-dom';
 
 const renderers = {
   inline: {
-    BOLD: (children) => <strong key={uniqid()}>{children}</strong>,
-    ITALIC: (children) => <em key={uniqid()}>{children}</em>,
-    UNDERLINE: (children) => <u key={uniqid()}>{children}</u>,
-    CODE: (children) => (
+    BOLD: (children: React.ReactNode) => <strong key={uniqid()}>{children}</strong>,
+    ITALIC: (children: React.ReactNode) => <em key={uniqid()}>{children}</em>,
+    UNDERLINE: (children: React.ReactNode) => <u key={uniqid()}>{children}</u>,
+    CODE: (children: React.ReactNode) => (
       <span key={uniqid()} className="code">
         {children}
       </span>
     ),
-    HEADING: (children) => (
+    HEADING: (children: React.ReactNode) => (
       <div className="heading" key={uniqid()}>
         {children}
       </div>
     ),
-    SUBHEADING: (children) => (
+    SUBHEADING: (children: React.ReactNode) => (
       <div className="subheading" key={uniqid()}>
         {children}
       </div>
     ),
-    STRIKETHROUGH: (children) => (
+    STRIKETHROUGH: (children: React.ReactNode) => (
       <span key={uniqid()} className="strikethrough">
         {children}
       </span>
     ),
   },
   blocks: {
-    unstyled: (children) => children.map((child) => (
-      <p key={uniqid()} className="block">
-        {child}
-      </p>
-    )),
-    codeBlock: (children) => children.map((child) => (
-      <pre key={uniqid()} className="codeBlock">
-        {child}
-      </pre>
-    )),
-    quoteBlock: (children) => children.map((child) => (
-      <div key={uniqid()} className="quoteBlock">
-        {child}
-      </div>
-    )),
-    'unordered-list-item': (children) => (
+    unstyled: (children: React.ReactNode) => {
+      if (children && Array.isArray(children)) {
+        return children.map((child) => (
+          <p key={uniqid()} className="block">
+            {child}
+          </p>
+        ));
+      }
+    },
+    codeBlock: (children: React.ReactNode) => {
+      if (children && Array.isArray(children)) {
+        return children.map((child) => (
+          <pre key={uniqid()} className="codeBlock">
+            {child}
+          </pre>
+        ));
+      }
+    },
+    quoteBlock: (children: React.ReactNode) => {
+      if (children && Array.isArray(children)) {
+        return children.map((child) => (
+          <div key={uniqid()} className="quoteBlock">
+            {child}
+          </div>
+        ));
+      }
+    },
+    'unordered-list-item': (children: React.ReactNode) => (
       <ul key={uniqid()}>
-        {children.map((child) => (
+        {children && Array.isArray(children) && children.map((child) => (
           <li key={uniqid()}>{child}</li>
         ))}
       </ul>
     ),
-    'ordered-list-item': (children) => (
+    'ordered-list-item': (children: React.ReactNode) => (
       <Ol key={uniqid()}>
-        {children.map((child) => (
+        {children && Array.isArray(children) && children.map((child) => (
           <li key={uniqid()}>{child}</li>
         ))}
       </Ol>
     ),
   },
   entities: {
-    LINK: (children, data) => (
-      <Link key={uniqid()} href={data.url}>
+    LINK: (children: React.ReactNode, data: { url: string }) => (
+      <a key={uniqid()} href={data.url}>
         {children}
-      </Link>
+      </a>
     ),
   },
 };

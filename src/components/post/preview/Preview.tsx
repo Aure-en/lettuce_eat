@@ -21,7 +21,7 @@ function Preview({ posts, hover }: Props) {
     <Grid>
       {posts
         && posts.map((post) => {
-          if (post.images.length > 0) {
+          if (post.images && post.images.length > 0) {
             return hover ? (
               <HoverPreview key={post._id} post={post} />
             ) : (
@@ -51,7 +51,7 @@ Preview.defaultProps = {
   hover: true,
 };
 
-const setRows = (total, number) => {
+const setRows = (total: number, number: number) => {
   let even = true;
   let rows = '';
   const arr = [...Array(total).keys()];
@@ -78,7 +78,7 @@ const setRows = (total, number) => {
   return rows;
 };
 
-const setColumns = (number) => {
+const setColumns = (number: number) => {
   let columns = '';
   let counter = 1;
   const even = [...Array(number).keys()];

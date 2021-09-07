@@ -4,16 +4,16 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 interface Props {
-  current: string,
-  total: number,
-  url: string,
+  current: string, // Current page number
+  total: number, // Total number of pages
+  url: string, // Route.
 }
 
 function Pagination({ current, total, url }: Props) {
   return (
     <Container>
       <Previous>
-        {[...Array(current).keys()].map((page) => (page + 1 === current ? (
+        {[...Array(current).keys()].map((page) => (page + 1 === +current ? (
           <Page key={page + 1} $current>
             {page + 1}
           </Page>
@@ -24,7 +24,7 @@ function Pagination({ current, total, url }: Props) {
         )))}
       </Previous>
       <Next>
-        {[...Array(total).keys()].slice(current).map((page) => (
+        {[...Array(total).keys()].slice(+current).map((page) => (
           <Page key={page + 1}>
             <Link to={`${url}/${page + 1}`}>{page + 1}</Link>
           </Page>
@@ -46,6 +46,10 @@ Pagination.defaultProps = {
   current: 1,
   total: 1,
 };
+
+interface Current {
+  $current?: boolean,
+}
 
 const Container = styled.div`
   display: flex;
@@ -73,7 +77,7 @@ const Next = styled(Previous)`
   }
 `;
 
-const Page = styled.li`
+const Page = styled.li<Current>`
   margin: 0 0.5rem;
 
   &:hover {

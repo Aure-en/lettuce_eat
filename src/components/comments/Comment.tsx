@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Form from './Form';
 import useFetch from '../../hooks/useFetch';
+import CommentInterface from '../../types/Comment';
 
 interface Props {
   postId: string,
@@ -11,7 +12,7 @@ interface Props {
 
 function Comment({ postId, commentId }: Props) {
   const [isReplying, setIsReplying] = useState(false);
-  const { data: comment } = useFetch(
+  const { data: comment } = useFetch<CommentInterface>(
     `${process.env.REACT_APP_API_URL}/posts/${postId}/comments/${commentId}`,
   );
 

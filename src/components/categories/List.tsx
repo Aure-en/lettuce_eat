@@ -9,7 +9,7 @@ interface Props {
   data: {
     name: string,
     _id: string,
-  }
+  }[],
 }
 
 function List({ title, type, data }: Props) {

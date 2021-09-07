@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import useDropdown from '../../hooks/useDropdown';
 import { ReactComponent as IconDown } from '../../assets/icons/arrow-down.svg';
+import LayoutType from '../../types/Layout';
 
-function Layout({ send }) {
-  const dropdownRef = useRef();
+interface Props {
+  send: (layout: LayoutType) => void,
+}
+
+function Layout({ send }: Props) {
+  const dropdownRef = useRef<HTMLElement>(null);
   const {
     isDropdownOpen,
     setIsDropdownOpen,
@@ -16,7 +21,6 @@ function Layout({ send }) {
   return (
     <Dropdown ref={dropdownRef}>
       <DropdownHeader
-        isDropdownOpen={isDropdownOpen}
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         Appearance:
@@ -57,7 +61,7 @@ Layout.propTypes = {
   send: PropTypes.func.isRequired,
 };
 
-const Dropdown = styled.div`
+const Dropdown = styled.div<{ ref: any }>`
   position: relative;
   display: inline-block;
   z-index: 2;

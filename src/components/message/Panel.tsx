@@ -4,7 +4,7 @@ import Form from './Form';
 import { ReactComponent as MessageIcon } from '../../assets/icons/panel/message.svg';
 
 function Panel() {
-  const formRef = useRef();
+  const formRef = useRef(null);
   const [active, setActive] = useState(false);
 
   const handleClick = (e: React.MouseEvent<HTMLElement>, ref) => {
@@ -37,7 +37,11 @@ function Panel() {
 
 export default Panel;
 
-const Container = styled.button`
+interface ActiveProps {
+  $active: boolean,
+}
+
+const Container = styled.button<ActiveProps>`
   position: fixed;
   top: 0;
   right: 0;
@@ -91,7 +95,7 @@ const Inner = styled.div`
   width: 100%;
 `;
 
-const Icon = styled.span`
+const Icon = styled.span<ActiveProps>`
   width: ${(props) => (props.$active ? '0' : '6rem')};
   color: ${(props) => props.theme.panel_right_icon};
   transition: width 0.5s linear;

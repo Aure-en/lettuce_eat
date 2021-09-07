@@ -5,8 +5,15 @@ import Search from '../../shared/Search';
 import Filters from '../../shared/filters/Filters';
 import Layout from '../../shared/Layout';
 import Sort from '../../shared/Sort';
+import LayoutType from '../../../types/Layout';
+import Queries from '../../../types/Queries';
 
-function Sidebar({ setQueries, setLayout }) {
+interface Props {
+  setQueries: (query: Partial<Queries>) => void,
+  setLayout: (layout: LayoutType) => void,
+}
+
+function Sidebar({ setQueries, setLayout }: Props) {
   return (
     <Container>
       <Search send={(search) => setQueries(search)} />

@@ -143,7 +143,7 @@ const Input = styled.input`
   background: transparent;
 `;
 
-const Textarea = styled(TextareaAutosize)`
+const Textarea = styled(TextareaAutosize)<{ onChange: any }>`
   border: none;
   width: 100%;
   background: transparent;

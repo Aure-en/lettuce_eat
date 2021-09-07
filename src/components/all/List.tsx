@@ -7,6 +7,7 @@ import Titles from '../post/preview/Titles';
 import Pagination from '../shared/Pagination';
 import useFetch from '../../hooks/useFetch';
 import Queries from '../../types/Queries';
+import Post from '../../types/Post';
 
 interface Props {
   queries: Queries,
@@ -18,7 +19,7 @@ function List({ queries, layout, page }: Props) {
   const [limit, setLimit] = useState<number>(10);
   const initial = `${process.env.REACT_APP_API_URL}/posts?page=${page}&limit=${limit}`;
   const [url, setUrl] = useState<string>(initial);
-  const { data: posts, count, loading } = useFetch(url);
+  const { data: posts, count, loading } = useFetch<Post[]>(url);
   const history = useHistory();
 
   useEffect(() => {
@@ -32,9 +33,9 @@ function List({ queries, layout, page }: Props) {
       return;
     }
 
-    Object.keys(queries).map((query) => {
-      if (queries[query] instanceof Array && queries[query].length > 0) {
-        url += `&${query}=${queries[query].join(',')}`;
+    (Object.keys(queries) as Array<keyof Queries>).forEach((query: keyof Queries) => {
+      if (queries[query] instanceof Array && (queries[query] as string[]).length > 0) {
+        url += `&${query}=${(queries[query] as string[]).join(',')}`;
       } else if (!(queries[query] instanceof Array) && queries[query] !== '') {
         url += `&${query}=${queries[query]}`;
       }

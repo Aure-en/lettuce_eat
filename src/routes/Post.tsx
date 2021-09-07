@@ -5,6 +5,7 @@ import useFetch from '../hooks/useFetch';
 import PostComponent from '../components/post/Post';
 import Form from '../components/comments/Form';
 import Comments from '../components/comments/Comments';
+import PostInterface from '../types/Post';
 
 interface Match {
   match: {
@@ -15,7 +16,7 @@ interface Match {
 }
 
 function Post({ match }: Match) {
-  const { data: post, error } = useFetch(
+  const { data: post, error } = useFetch<PostInterface>(
     `${process.env.REACT_APP_API_URL}/posts/${match.params.postId}`,
   );
 

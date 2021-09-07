@@ -5,10 +5,19 @@ import styled from 'styled-components';
 // Icons
 import check from '../../../assets/icons/check.svg';
 import { ReactComponent as IconDown } from '../../../assets/icons/arrow-down.svg';
+import Category from '../../../types/Category';
+import Ingredient from '../../../types/Ingredient';
+
+interface Props {
+  select: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  selected: string[],
+  options: Category[] | Ingredient[],
+  heading: string,
+}
 
 function List({
   select, selected, options, heading,
-}) {
+}: Props) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(true);
   return (
     <Container>
@@ -29,7 +38,6 @@ function List({
               id={option._id}
               name={option._id}
               value={option._id}
-              $checked={selected.includes(option._id)}
               onChange={select}
             />
           </Label>
@@ -51,6 +59,10 @@ List.propTypes = {
   ).isRequired,
 };
 
+interface Checked {
+  $checked: boolean,
+}
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -64,7 +76,7 @@ const Subheading = styled.button`
   text-decoration: underline;
 `;
 
-const Label = styled.label`
+const Label = styled.label<Checked>`
   position: relative;
   cursor: pointer;
 

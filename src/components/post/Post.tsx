@@ -6,7 +6,7 @@ import renderers from '../shared/renderers';
 import PostInterface from '../../types/Post';
 
 interface Props {
-  post?: PostInterface,
+  post: PostInterface,
 }
 
 function Post({ post }: Props) {
@@ -17,7 +17,7 @@ function Post({ post }: Props) {
         <div>{post.description}</div>
       </Header>
 
-      {post.images.length > 0 && (
+      {post.images && post.images.length > 0 && (
         <Image
           src={`data:${post.images[0].contentType};base64,${Buffer.from(
             post.images[0].data,

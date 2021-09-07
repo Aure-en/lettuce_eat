@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg';
 
-function Search({ send }) {
+interface Props {
+  send: (args: {
+    search: string
+  }) => void,
+}
+
+function Search({ send }: Props) {
   const [search, setSearch] = useState('');
 
   const onSubmit = (e: React.SyntheticEvent) => {

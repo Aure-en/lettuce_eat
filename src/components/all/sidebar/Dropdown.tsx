@@ -3,8 +3,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Sidebar from './Sidebar';
 import { ReactComponent as IconDown } from '../../../assets/icons/arrow-down.svg';
+import LayoutType from '../../../types/Layout';
+import Queries from '../../../types/Queries';
 
-function Dropdown({ setQueries, setLayout }) {
+interface Props {
+  setQueries: (query: Partial<Queries>) => void,
+  setLayout: (layout: LayoutType) => void,
+}
+
+function Dropdown({ setQueries, setLayout }: Props) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   return (
     <Container>
@@ -30,6 +37,10 @@ Dropdown.propTypes = {
   setLayout: PropTypes.func.isRequired,
 };
 
+interface DropdownProps {
+  $isDropdownOpen: boolean,
+}
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -37,7 +48,7 @@ const Container = styled.div`
   margin-bottom: 1rem;
 `;
 
-const Content = styled.div`
+const Content = styled.div<DropdownProps>`
   display: ${(props) => (props.$isDropdownOpen ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;

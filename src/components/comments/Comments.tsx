@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Comment from './Comment';
 import useFetch from '../../hooks/useFetch';
+import CommentInterface from '../../types/Comment';
 
 interface Props {
   postId: string,
 }
 
 function Comments({ postId }: Props) {
-  const { data: comments } = useFetch(
+  const { data: comments } = useFetch<CommentInterface[]>(
     `${process.env.REACT_APP_API_URL}/posts/${postId}/comments`,
   );
 
@@ -26,6 +27,7 @@ function Comments({ postId }: Props) {
               />
             );
           }
+          return <></>;
         })}
     </List>
   );

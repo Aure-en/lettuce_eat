@@ -5,6 +5,7 @@ import List from '../components/all/List';
 import Sidebar from '../components/all/sidebar/Sidebar';
 import DropdownSidebar from '../components/all/sidebar/Dropdown';
 import Queries from '../types/Queries';
+import Layout from '../types/Layout';
 
 interface Props {
   match: {
@@ -15,7 +16,7 @@ interface Props {
 }
 
 function All({ match }: Props) {
-  const [layout, setLayout] = useState<'preview' | 'list'>('preview');
+  const [layout, setLayout] = useState<Layout>('preview');
   const [queries, setQueries] = useState<Queries>({});
 
   return (
@@ -35,14 +36,14 @@ function All({ match }: Props) {
 
         <Desktop>
           <Sidebar
-            setQueries={(update) => setQueries({ ...queries, ...update })}
-            setLayout={(update) => setLayout(update)}
+            setQueries={(update: Partial<Queries>) => { setQueries({ ...queries, ...update }); }}
+            setLayout={(update: Layout) => { setLayout(update); }}
           />
         </Desktop>
         <Mobile>
           <DropdownSidebar
-            setQueries={(update) => setQueries({ ...queries, ...update })}
-            setLayout={(update) => setLayout(update)}
+            setQueries={(update: Partial<Queries>) => { setQueries({ ...queries, ...update }); }}
+            setLayout={(update: Layout) => { setLayout(update); }}
           />
         </Mobile>
       </Content>

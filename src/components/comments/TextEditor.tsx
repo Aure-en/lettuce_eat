@@ -37,8 +37,12 @@ import { ReactComponent as IconCode } from '../../assets/icons/text_editor/icon-
 import { ReactComponent as IconBlockCode } from '../../assets/icons/text_editor/icon-code-block.svg';
 import { ReactComponent as IconInfo } from '../../assets/icons/text_editor/icon-info.svg';
 
-const findLinkEntities = (contentBlock, callback, contentState) => {
-  contentBlock.findEntityRanges((character) => {
+const findLinkEntities = (
+  contentBlock: any,
+  callback: any,
+  contentState: any,
+) => {
+  contentBlock.findEntityRanges((character: any) => {
     const entityKey = character.getEntity();
     return (
       entityKey !== null
@@ -47,14 +51,20 @@ const findLinkEntities = (contentBlock, callback, contentState) => {
   }, callback);
 };
 
-const LinkEntity = ({ contentState, entityKey, children }) => {
+const LinkEntity = ({ contentState, entityKey, children }: {
+  contentState: any,
+  entityKey: any,
+  children: React.ReactNode,
+}) => {
   const { url } = contentState.getEntity(entityKey).getData();
   // Must add a on click event because links in contentEditable don't work by default.
   return (
     <StyledLink
       href={url}
-      onClick={(e) => {
-        window.open(e.target.closest('a').href);
+      onClick={(e: React.MouseEvent) => {
+        if (e.target instanceof HTMLElement) {
+          window.open(e.target.closest('a')?.href);
+        }
       }}
     >
       {children}
@@ -79,8 +89,14 @@ const styleMap = {
   },
 };
 
+interface Props {
+  sendContent: (text: string) => void | undefined,
+  prevContent: string | undefined,
+  placeholder: string | undefined,
+}
+
 const TextEditor = forwardRef(
-  ({ sendContent, prevContent, placeholder }, ref) => {
+  ({ sendContent, prevContent, placeholder }: Props, ref) => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty(decorator));
     const [isLinkEditorOpen, setIsLinkEditorOpen] = useState(false);
     const [link, setLink] = useState('');
@@ -88,9 +104,9 @@ const TextEditor = forwardRef(
     const [selection, setSelection] = useState();
     const [hidePlaceholder, setHidePlaceholder] = useState(false);
     // Gets coordinates to place the link window properly.
-    const wrapperRef = useRef();
-    const editorRef = useRef();
-    const linkRef = useRef();
+    const wrapperRef = useRef(null);
+    const editorRef = useRef(null);
+    const linkRef = useRef(null);
 
     // Reset the text editor after the user posts a comment.
     useImperativeHandle(ref, () => ({
@@ -119,7 +135,7 @@ const TextEditor = forwardRef(
     }, [isLinkEditorOpen]);
 
     // Allows the user to use keyboard shortcuts (ex: Ctrl + B to bold)
-    const handleKeyCommand = (command) => {
+    const handleKeyCommand = (command: any) => {
       const newState = RichUtils.handleKeyCommand(editorState, command);
       if (newState) setEditorState(newState);
     };
@@ -194,7 +210,7 @@ const TextEditor = forwardRef(
     };
 
     // Nest lists
-    const handleTab = (e) => {
+    const handleTab = (e: React.KeyboardEvent) => {
       e.preventDefault(); // Prevents focus from going to another element
       const blockType = RichUtils.getCurrentBlockType(editorState);
       if (
@@ -219,7 +235,7 @@ const TextEditor = forwardRef(
     };
 
     // Blocks custom styles
-    const customBlockFn = (contentBlock) => {
+    const customBlockFn = (contentBlock: any) => {
       const type = contentBlock.getType();
       if (type === 'quoteBlock') {
         return 'quoteBlock';
@@ -232,13 +248,14 @@ const TextEditor = forwardRef(
 
     return (
       <Wrapper
-        isActive={editorState.getSelection().hasFocus}
+        active={(editorState.getSelection() as any).hasFocus}
         ref={wrapperRef}
       >
         <Buttons>
           <Button
             type="button"
-            // Using onMouseDown with e.preventDefault() prevents the text from being unselected when clicking on the Button.
+            // Using onMouseDown with e.preventDefault() prevents the text from
+            // being unselected when clicking on the Button.
             onMouseDown={(e) => {
               e.preventDefault();
               onBoldClick();
@@ -277,7 +294,7 @@ const TextEditor = forwardRef(
                 e.preventDefault();
                 let coords;
                 const selection = window.getSelection();
-                if (!selection.isCollapsed) {
+                if (selection && !selection.isCollapsed) {
                   const selectionCoords = selection
                     .getRangeAt(0)
                     .getBoundingClientRect();
@@ -463,24 +480,34 @@ const TextEditor = forwardRef(
 );
 
 TextEditor.propTypes = {
-  sendContent: PropTypes.func,
+  sendContent: PropTypes.func.isRequired,
   prevContent: PropTypes.string,
   placeholder: PropTypes.string,
 };
 
 TextEditor.defaultProps = {
-  sendContent: () => {},
   prevContent: '',
   placeholder: '',
 };
 
 export default TextEditor;
 
-const Wrapper = styled.div`
+interface Active {
+  active: boolean,
+}
+
+interface Selection {
+  selection: {
+    top: number,
+    left: number
+  }
+}
+
+const Wrapper = styled.div<Active>`
   display: flex;
   flex-direction: column;
   border: 1px solid
-    ${(props) => (props.isActive
+    ${(props) => (props.active
     ? props.theme.border_active
     : props.theme.border_secondary)};
   border-radius: 5px;
@@ -509,7 +536,7 @@ const Buttons = styled.div`
   }
 `;
 
-const Button = styled.button`
+const Button = styled.button<Active>`
   padding: 0.2rem;
   margin: 0.1rem;
   display: flex;
@@ -528,7 +555,7 @@ const Button = styled.button`
   }
 `;
 
-const LinkBox = styled.div`
+const LinkBox = styled.div<Selection>`
   position: absolute;
   display: flex;
   flex-direction: column;

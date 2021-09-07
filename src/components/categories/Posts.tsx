@@ -5,6 +5,7 @@ import useFetch from '../../hooks/useFetch';
 import Preview from '../post/preview/Preview';
 import Titles from '../post/preview/Titles';
 import Pagination from '../shared/Pagination';
+import Post from '../../types/Post';
 
 interface Props {
   type: string,
@@ -26,7 +27,7 @@ function Posts({
   const [limit, setLimit] = useState(10);
   const initial = `${process.env.REACT_APP_API_URL}/${type}/${category._id}/posts?page=${page}&limit=${limit}`;
   const [url, setUrl] = useState(initial);
-  const { data: posts, count, loading } = useFetch(url);
+  const { data: posts, count, loading } = useFetch<Post[]>(url);
 
   // Update url when page changes
   useEffect(() => {

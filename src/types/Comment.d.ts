@@ -5,6 +5,7 @@ interface Comment {
   post: string,
   parent: string,
   children: string[],
+  _id: string,
 }
 
 export default Comment;

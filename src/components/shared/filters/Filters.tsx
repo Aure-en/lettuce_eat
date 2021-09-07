@@ -3,22 +3,31 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import useFetch from '../../../hooks/useFetch';
 import List from './List';
+import Category from '../../../types/Category';
+import Ingredient from '../../../types/Ingredient';
 
-function Filters({ send }) {
+interface Props {
+  send: (args: {
+    category: string[],
+    ingredient: string[],
+  }) => void,
+}
+
+function Filters({ send }: Props) {
   const [selected, setSelected] = useState({
     category: [],
     ingredient: [],
   });
 
-  const { data: categories } = useFetch(
+  const { data: categories } = useFetch<Category[]>(
     `${process.env.REACT_APP_API_URL}/categories`,
   );
-  const { data: ingredients } = useFetch(
+  const { data: ingredients } = useFetch<Ingredient[]>(
     `${process.env.REACT_APP_API_URL}/ingredients`,
   );
 
   const handleChange = (
-    e,
+    e: React.ChangeEvent<HTMLInputElement>,
     type: 'category' | 'ingredient',
   ) => {
     let update = [...selected[type]];
@@ -43,7 +52,7 @@ function Filters({ send }) {
 
       {categories && (
         <List
-          select={(e) => handleChange(e, 'category')}
+          select={(e) => { handleChange(e, 'category'); }}
           selected={selected.category}
           options={categories}
           heading="Recipe Types"

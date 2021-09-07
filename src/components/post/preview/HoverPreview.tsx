@@ -3,13 +3,18 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
+import Post from '../../../types/Post';
 
-function HoverPreview({ post }) {
+interface Props {
+  post: Post,
+}
+
+function HoverPreview({ post }: Props) {
   const [hovered, setHovered] = useState(false);
   return (
     <Item>
       <Content
-        $background={post.images[0]}
+        $background={post.images && post.images[0]}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
@@ -47,6 +52,15 @@ HoverPreview.propTypes = {
   }).isRequired,
 };
 
+interface Background {
+  $background: {
+    contentType: string,
+    thumbnail: Buffer,
+    data: Buffer,
+    size: number,
+  } | undefined,
+}
+
 const Item = styled.article`
   position: relative;
   grid-column-end: span 2;
@@ -56,7 +70,7 @@ const Item = styled.article`
   overflow: hidden;
 `;
 
-const Content = styled.div`
+const Content = styled.div<Background>`
   position: absolute;
   left: 0;
   top: 0;
@@ -93,7 +107,7 @@ const Content = styled.div`
   }
 `;
 
-const Overlay = styled(Link)`
+const Overlay = styled(Link)<{ $state: string }>`
   position: absolute;
   display: block;
   top: ${(props) => (props.$state === 'entered' ? '50%' : '75%')};
@@ -119,7 +133,7 @@ const btnLine = `
   opacity: 0.6;
 `;
 
-const LinkBtn = styled(Link)`
+const LinkBtn = styled(Link)<{ $state: string }>`
   position: relative;
   padding: 0.5rem 1.25rem;
   color: ${(props) => props.theme.text_link};

@@ -12,7 +12,7 @@ function ImagePreview({ post }: Props) {
   return (
     <Item key={post._id}>
       <Link to={`/posts/${post._id}`}>
-        <Content background={post.images[0]}>
+        <Content $background={post.images && post.images[0]}>
           <Name>{post.title}</Name>
         </Content>
       </Link>
@@ -39,6 +39,15 @@ ImagePreview.propTypes = {
   }).isRequired,
 };
 
+interface Background {
+  $background: {
+    contentType: string,
+    thumbnail: Buffer,
+    data: Buffer,
+    size: number,
+  } | undefined,
+}
+
 const Item = styled.article`
   position: relative;
   grid-column-end: span 2;
@@ -47,7 +56,7 @@ const Item = styled.article`
   padding-bottom: 110%; // Aspect ratio
 `;
 
-const Content = styled.div`
+const Content = styled.div<Background>`
   position: absolute;
   left: 0;
   top: 0;
@@ -64,10 +73,10 @@ const Content = styled.div`
     100% 75%,
     100% 25%
   ); // Hexagon shape
-  background-image: ${(props) => props.background
+  background-image: ${(props) => props.$background
     && `url(
-    data:${props.background.contentType};base64,${Buffer.from(
-  props.background.thumbnail || props.background.data,
+    data:${props.$background.contentType};base64,${Buffer.from(
+  props.$background.thumbnail || props.$background.data,
 ).toString('base64')}`});
   background-position: center;
   background-size: cover;

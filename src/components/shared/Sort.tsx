@@ -3,13 +3,18 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import useDropdown from '../../hooks/useDropdown';
 import { ReactComponent as IconDown } from '../../assets/icons/arrow-down.svg';
+import SortInterface from '../../types/Sort';
 
-function Sort({ send }) {
-  const [sort, setSort] = useState({
+interface Props {
+  send: (args: SortInterface) => void,
+}
+
+function Sort({ send }: Props) {
+  const [sort, setSort] = useState<SortInterface>({
     sort_by: 'date',
     order: 'desc',
   });
-  const dropdownRef = useRef();
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const {
     isDropdownOpen,
     setIsDropdownOpen,
@@ -24,7 +29,6 @@ function Sort({ send }) {
   return (
     <Dropdown ref={dropdownRef}>
       <DropdownHeader
-        isDropdownOpen={isDropdownOpen}
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         Sort by:

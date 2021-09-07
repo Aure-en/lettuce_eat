@@ -39,7 +39,7 @@ function Form({ postId, parentId, comment }: Props) {
     // Client-side validation
     let hasErrors = false;
 
-    Object.keys(values).map((key) => {
+    (Object.keys(values) as Array<keyof ['username', 'content']>).map((key: keyof ['username', 'content']) => {
       if (!values[key]) {
         hasErrors = true;
         setErrors((prev) => ({ ...prev, [key]: `${key} must be specified.` }));
