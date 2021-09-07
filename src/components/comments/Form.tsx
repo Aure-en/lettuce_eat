@@ -5,15 +5,20 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Comment from '../../types/Comment';
 
 interface Props {
-  postId: string,
-  parentId: string,
-  comment: Comment,
+  postId: string;
+  parentId: string;
+  comment: Comment;
+}
+
+interface Values {
+  username: string,
+  content: string,
 }
 
 // If a comment is passed, the form will update it.
 // Otherwise, a new comment document will be created.
 function Form({ postId, parentId, comment }: Props) {
-  const [values, setValues] = useState({
+  const [values, setValues] = useState<Values>({
     username: (comment && comment.username) || '',
     content: (comment && comment.content) || '',
   });
@@ -39,12 +44,17 @@ function Form({ postId, parentId, comment }: Props) {
     // Client-side validation
     let hasErrors = false;
 
-    (Object.keys(values) as Array<keyof ['username', 'content']>).map((key: keyof ['username', 'content']) => {
-      if (!values[key]) {
-        hasErrors = true;
-        setErrors((prev) => ({ ...prev, [key]: `${key} must be specified.` }));
-      }
-    });
+    (Object.keys(values) as Array<keyof Values>).map(
+      (key: keyof Values) => {
+        if (!values[key]) {
+          hasErrors = true;
+          setErrors((prev) => ({
+            ...prev,
+            [key]: `${key} must be specified.`,
+          }));
+        }
+      },
+    );
 
     if (hasErrors) return;
 
@@ -97,19 +107,22 @@ function Form({ postId, parentId, comment }: Props) {
           name="username"
           value={values.username}
           placeholder="Username"
-          onChange={(e) => handleChange(e.target.name, e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            handleChange(e.target.name, e.target.value);
+          }}
         />
       </label>
       {errors.username && <div>{errors.username}</div>}
 
       <label htmlFor="content">
-        <Input
-          as={TextareaAutosize}
+        <Textarea
           id="content"
           name="content"
           placeholder="Comment"
           value={values.content}
-          onChange={(e) => handleChange(e.target.name, e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            handleChange(e.target.name, e.target.value);
+          }}
           minRows={7}
         />
       </label>
@@ -149,7 +162,26 @@ const Container = styled.form`
   margin-top: 1rem;
 `;
 
-const Input = styled.input`
+const Input = styled.input<{
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}>`
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border: none;
+  border-left: 3px solid ${(props) => props.theme.input_border};
+
+  &::placeholder {
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    font-style: italic;
+  }
+`;
+
+const Textarea = styled(TextareaAutosize)<{
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void,
+  minRows: number,
+}>`
   width: 100%;
   margin: 0.5rem 0;
   padding: 0.5rem;

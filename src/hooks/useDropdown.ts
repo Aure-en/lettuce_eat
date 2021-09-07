@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 
-function useDropdown(ref, initial, closeOnClickOutside = true) {
+function useDropdown(
+  ref: React.RefObject<HTMLElement>,
+  initial: string,
+  closeOnClickOutside: boolean = true,
+) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [current, setCurrent] = useState(initial || '');
 
@@ -8,13 +12,13 @@ function useDropdown(ref, initial, closeOnClickOutside = true) {
     setIsDropdownOpen(false);
   };
 
-  const handleChoice = (choice) => {
+  const handleChoice = (choice: string) => {
     setCurrent(choice);
     setIsDropdownOpen(false);
   };
 
   // Close dropdown if clicking outside
-  const handleClickOutside = (e) => {
+  const handleClickOutside = (e: React.MouseEvent) => {
     if (ref.current && !ref.current.contains(e.target)) {
       setIsDropdownOpen(false);
     }

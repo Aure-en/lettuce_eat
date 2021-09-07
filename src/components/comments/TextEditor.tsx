@@ -101,12 +101,12 @@ const TextEditor = forwardRef(
     const [isLinkEditorOpen, setIsLinkEditorOpen] = useState(false);
     const [link, setLink] = useState('');
     // Gets the selection position so that the link window opens under it.
-    const [selection, setSelection] = useState();
-    const [hidePlaceholder, setHidePlaceholder] = useState(false);
+    const [selection, setSelection] = useState<{ top: number, left: number }>();
+    const [hidePlaceholder, setHidePlaceholder] = useState<boolean>(false);
     // Gets coordinates to place the link window properly.
-    const wrapperRef = useRef(null);
-    const editorRef = useRef(null);
-    const linkRef = useRef(null);
+    const wrapperRef = useRef<HTMLDivElement>(null);
+    const editorRef = useRef<HTMLElement>(null);
+    const linkRef = useRef<HTMLButtonElement>(null);
 
     // Reset the text editor after the user posts a comment.
     useImperativeHandle(ref, () => ({
@@ -290,24 +290,28 @@ const TextEditor = forwardRef(
             <Button
               ref={linkRef}
               type="button"
+              // Select the text position where the link must be inserted
+              // Open the link editor.
               onMouseDown={(e) => {
                 e.preventDefault();
                 let coords;
                 const selection = window.getSelection();
                 if (selection && !selection.isCollapsed) {
-                  const selectionCoords = selection
-                    .getRangeAt(0)
-                    .getBoundingClientRect();
-                  coords = {
-                    top:
-                      selectionCoords.bottom
-                      - wrapperRef.current.getBoundingClientRect().top,
-                    left:
-                      (selectionCoords.right - selectionCoords.left) / 2
-                      + selectionCoords.left
-                      - wrapperRef.current.getBoundingClientRect().left,
-                  };
-                } else {
+                  if (wrapperRef.current) {
+                    const selectionCoords = selection
+                      .getRangeAt(0)
+                      .getBoundingClientRect();
+                    coords = {
+                      top:
+                        selectionCoords.bottom
+                        - wrapperRef.current.getBoundingClientRect().top,
+                      left:
+                        (selectionCoords.right - selectionCoords.left) / 2
+                        + selectionCoords.left
+                        - wrapperRef.current.getBoundingClientRect().left,
+                    };
+                  }
+                } else if (linkRef.current && wrapperRef.current) {
                   const linkCoords = linkRef.current.getBoundingClientRect();
                   coords = {
                     top:
@@ -423,8 +427,8 @@ const TextEditor = forwardRef(
         </Buttons>
 
         <Container
-          className={hidePlaceholder && 'Editor-hidePlaceholder'}
-          onClick={() => editorRef.current.focus()}
+          className={hidePlaceholder ? 'Editor-hidePlaceholder' : ''}
+          onClick={() => editorRef.current && editorRef.current.focus()}
         >
           <Editor
             editorState={editorState}
@@ -492,18 +496,9 @@ TextEditor.defaultProps = {
 
 export default TextEditor;
 
-interface Active {
+const Wrapper = styled.div<{
   active: boolean,
-}
-
-interface Selection {
-  selection: {
-    top: number,
-    left: number
-  }
-}
-
-const Wrapper = styled.div<Active>`
+}>`
   display: flex;
   flex-direction: column;
   border: 1px solid
@@ -513,7 +508,7 @@ const Wrapper = styled.div<Active>`
   border-radius: 5px;
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ className: string }>`
   min-height: 8rem;
   padding: 1rem;
   background: ${(props) => props.theme.input_bg};
@@ -536,7 +531,9 @@ const Buttons = styled.div`
   }
 `;
 
-const Button = styled.button<Active>`
+const Button = styled.button<{
+  active: boolean,
+}>`
   padding: 0.2rem;
   margin: 0.1rem;
   display: flex;
@@ -555,7 +552,10 @@ const Button = styled.button<Active>`
   }
 `;
 
-const LinkBox = styled.div<Selection>`
+const LinkBox = styled.div<{ selection: {
+  top: number,
+  left: number
+} | undefined }>`
   position: absolute;
   display: flex;
   flex-direction: column;

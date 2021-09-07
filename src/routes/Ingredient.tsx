@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import useFetch from '../hooks/useFetch';
 import Posts from '../components/categories/Posts';
+import IngredientInterface from '../types/Ingredient';
 
 interface Props {
   match: {
@@ -13,7 +14,7 @@ interface Props {
 }
 
 function Ingredient({ match }: Props) {
-  const { data, error } = useFetch(
+  const { data, error } = useFetch<IngredientInterface>(
     `${process.env.REACT_APP_API_URL}/ingredients/${match.params.ingredient}`,
   );
 
@@ -26,7 +27,6 @@ function Ingredient({ match }: Props) {
       <Container>
         <Header>
           <Heading>{data.name}</Heading>
-          {data.description && <p>{data.description}</p>}
         </Header>
         <Posts type="ingredients" category={data} />
       </Container>

@@ -5,6 +5,7 @@ import useFetch from '../hooks/useFetch';
 import Posts from '../components/categories/Posts';
 import Sort from '../components/shared/Sort';
 import Layout from '../components/shared/Layout';
+import CategoryInterface from '../types/Category';
 
 interface Props {
   match: {
@@ -26,7 +27,7 @@ function Category({ match }: Props) {
     sort_by: 'date',
     order: 'desc',
   });
-  const { data, error } = useFetch(
+  const { data, error } = useFetch<CategoryInterface>(
     `${process.env.REACT_APP_API_URL}/categories/${match.params.category}`,
   );
 

@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import List from '../components/categories/List';
 import useFetch from '../hooks/useFetch';
+import Category from '../types/Category';
+import Ingredient from '../types/Ingredient';
 
 function Categories() {
-  const { data: categories } = useFetch(
+  const { data: categories } = useFetch<Category[]>(
     `${process.env.REACT_APP_API_URL}/categories`,
   );
-  const { data: ingredients } = useFetch(
+  const { data: ingredients } = useFetch<Ingredient[]>(
     `${process.env.REACT_APP_API_URL}/ingredients`,
   );
 
@@ -20,7 +22,7 @@ function Categories() {
           {' '}
           <strong>recipes</strong>
           {' '}
-          so you don't have to!
+          so you don&apos;t have to!
         </p>
         <p>
           Whether you browse them by
@@ -30,7 +32,7 @@ function Categories() {
           or by
           {' '}
           <Underline>ingredient</Underline>
-          , we're sure you'll find just what
+          , we&apos;re sure you&apos;ll find just what
           you are looking for.
         </p>
       </Header>
