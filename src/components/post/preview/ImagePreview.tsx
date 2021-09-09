@@ -86,7 +86,6 @@ const Name = styled.span`
   position: absolute;
   bottom: 25%;
   display: inline-block;
-  padding: 0.5rem 1.25rem;
   color: ${(props) => props.theme.text_link};
   background: ${(props) => props.theme.overlay_link};
   z-index: 5;
@@ -95,4 +94,9 @@ const Name = styled.span`
   text-align: center;
   font-family: "Source Sans Pro", "Barlow", sans-serif;
   font-size: 1rem;
+  padding: 0.5rem;
+
+  @media all and (min-width: 1000px) {
+    padding: 0.5rem 1.25rem;
+  }
 `;

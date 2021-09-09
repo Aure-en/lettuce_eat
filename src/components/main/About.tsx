@@ -5,7 +5,10 @@ function About() {
   return (
     <Container>
       <Logo>
-        <Image src="https://firebasestorage.googleapis.com/v0/b/aurelie-nguyen.appspot.com/o/projects%2Fberrycious%2Ferdbeer-kaesesahne-torte-720x1008.webp?alt=media&token=9acc79a2-73eb-41a5-a1e8-ece0d5594e01" />
+        <Image
+          src="https://firebasestorage.googleapis.com/v0/b/aurelie-nguyen.appspot.com/o/projects%2Fberrycious%2Ferdbeer-kaesesahne-torte-720x1008.webp?alt=media&token=9acc79a2-73eb-41a5-a1e8-ece0d5594e01"
+          alt="Cream and strawberry cake"
+        />
       </Logo>
       <div>
         <Title>
