@@ -18,8 +18,8 @@ function useDropdown(
   };
 
   // Close dropdown if clicking outside
-  const handleClickOutside = (e: React.MouseEvent) => {
-    if (ref.current && !ref.current.contains(e.target)) {
+  const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+    if (ref.current && !ref.current.contains(e.target as HTMLElement)) {
       setIsDropdownOpen(false);
     }
   };

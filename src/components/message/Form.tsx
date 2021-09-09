@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import styled from 'styled-components';
 
+interface Values {
+  name: string,
+  email: string,
+  message: string,
+}
+
 function Form() {
   const initial = {
     name: '',
@@ -9,9 +15,9 @@ function Form() {
     message: '',
   };
 
-  const [values, setValues] = useState(initial);
-  const [errors, setErrors] = useState(initial);
-  const [message, setMessage] = useState('');
+  const [values, setValues] = useState<Values>(initial);
+  const [errors, setErrors] = useState<Values>(initial);
+  const [message, setMessage] = useState<string>('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -24,7 +30,7 @@ function Form() {
 
     // Validation
     let hasErrors = false;
-    Object.keys(values).map((key) => {
+    (Object.keys(values) as Array<keyof Values>).map((key: keyof Values) => {
       if (!values[key]) {
         hasErrors = true;
         setErrors((prev) => ({

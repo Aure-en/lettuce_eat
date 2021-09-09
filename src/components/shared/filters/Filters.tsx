@@ -30,9 +30,9 @@ function Filters({ send }: Props) {
     e: React.ChangeEvent<HTMLInputElement>,
     type: 'category' | 'ingredient',
   ) => {
-    let update = [...selected[type]];
+    let update: string[] = [...selected[type]];
     // If the ingredient is in selected, unchecks.
-    if (selected[type].includes(e.target.value)) {
+    if (update.includes(e.target.value)) {
       update = update.filter((item) => item !== e.target.value);
       // Else, adds it to the checked list.
     } else {

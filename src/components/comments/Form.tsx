@@ -23,11 +23,11 @@ function Form({ postId, parentId, comment }: Props) {
     content: (comment && comment.content) || '',
   });
 
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<Values>({
     username: '',
     content: '',
   });
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState<string>('');
 
   const handleChange = (name: string, value: string) => {
     setValues({ ...values, [name]: value });

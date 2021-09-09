@@ -7,8 +7,8 @@ function Panel() {
   const formRef = useRef(null);
   const [active, setActive] = useState(false);
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>, ref) => {
-    if (ref.current && !ref.current.contains(e.target)) setActive(!active);
+  const handleClick = (e: React.MouseEvent<HTMLElement>, ref: React.RefObject<HTMLElement>) => {
+    if (ref.current && !ref.current.contains(e.target as HTMLElement)) setActive(!active);
   };
 
   return (
