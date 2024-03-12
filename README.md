@@ -1,6 +1,5 @@
 # Berrycious
 
-* [View Live](https://berrycious.vercel.app)
 * [View Back Repository](https://github.com/Aure-en/berrycious_api)
 
 ## Description
